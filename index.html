@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        async function fetchChat() {
+                try {
+                    fetch("./Chat.json")
+                        .then(res => res.json())
+                        .then(data => {
+                            Chat = data;
+                            oldChat = document.getElementById("Chat");
+                            if (Chat != oldChat.innerHTML){
+                                oldChat.innerHTML = Chat
+                            }
+                        });
+                }
+                catch (error) {
+                    console.error(error);
+                }
+            }
+    </script>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div id="Chat"></div>
+    
+</body>
+<script>
+    setInterval(fetchChat, 100)
+</script>
+</html>

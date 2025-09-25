@@ -1,6 +1,12 @@
 from os import getenv as env
 import os
 from dotenv import load_dotenv
+from random import randrange
+from reformat import reformatMsg
+
+
+from flask import Flask, render_template, request, redirect
+
 
 
 from twitchAPI.twitch import Twitch
@@ -15,10 +21,12 @@ APP_ID = env('app_id')
 APP_SECRET = env('app_secret')
 USER_SCOPE = [AuthScope.CHAT_READ, AuthScope.CHAT_EDIT]
 TARGET_CHANNEL = 'sandernf__'
-print(APP_ID)
+#print(APP_ID)
 
 
-MesageList = []
+
+
+
 
 # this will be called when the event READY is triggered, which will be on bot start
 async def on_ready(ready_event: EventData):
@@ -31,52 +39,38 @@ async def on_ready(ready_event: EventData):
 
 # this will be called whenever a message in a channel was send by either the bot OR another user
 async def on_message(msg: ChatMessage):
-    message = msg.text
-    print(msg.emotes)
-    EmotesList = []
-    for i in msg.emotes:
-        ii = msg.emotes[i]
-        print('stage I')
-        print(i)
-        print(ii)
-        for j in ii:
-            print('stage J')
-            print(j)
-            #jj = ii[j]
-            #print(jj)
-
-            print(j['start_position'])
-            #message[j['start_position']] = '§'
-            #message[j['end_position']] = '§'
-            #message.split('§')
-            #message = f'{message[0]} <img></img> {message[2]}'
-            a = int(j['start_position'])
-            b = int(j['end_position'])+1
-            c = b-a
-            
-            EmotesList.append([a,i])
-            start = message[0:a]
-            end = message[(b):]
-            print(start)
-            print(end)
-            message = f'{start}{'§'*c}{end}'
+    for i in range(10000):
+        slow = randrange(1, 100)*randrange(1,100)
+    
+    class z:
+        text = msg.text
+        emotes = msg.emotes
+        chat = msg.chat
+        id = msg.id
+        user = {
+        'user_badge_info':msg.user.badge_info,
+        'user_badges':msg.user.badges,
+        'user_source_badge_info':msg.user.source_badge_info,
+        'user_source_badges':msg.user.source_badges,
+        'user_chat':msg.user.chat,
+        'user_color':msg.user.color,
+        'user_display_name':msg.user.display_name,
+        'user_mod':msg.user.mod,
+        'user_vip':msg.user.vip,
+        'user_turbo':msg.user.turbo,
+        'user_subscriber':msg.user.subscriber,
+        'user_user_type':msg.user.user_type,
+        'user_name':msg.user.name
+        }
+    reformatMsg(z)
+    
 
 
 
 
 
 
-    def x(e):
-        return (e[0])
-    EmotesList.sort(key=x)
-    print(EmotesList)
-
-
-
-    print(message)
-    MesageList.append(message)
-
-    print(f'in {msg.room.name}, {msg.user.name} said: {message}, emotes: {msg.emotes}')
+    
 
 
 # this will be called whenever someone subscribes to a channel
