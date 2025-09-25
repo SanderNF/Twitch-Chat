@@ -1,0 +1,48 @@
+
+p {
+    color: white;
+    font-family: Arial, sans-serif;
+    background-color: #3591D9;
+    padding: 6px 8px;
+    border: 1px solid #000000;
+    border-radius: 18px;
+    max-width: 400px;
+    width: fit-content;
+    margin-left: 15px;
+    margin-top: 0;
+    margin-bottom: -35px;
+    font-size: medium;
+    text-align: center;
+    text-rendering: optimizeLegibility;
+    word-break: break-word;
+}
+code {
+    color: white;
+    font-family: Arial, sans-serif;
+    background-color: #F05DD2;
+    padding: 6px 8px;
+    border: 1px solid #000000;
+    border-radius: 16px;
+    font-size: medium;
+    font-weight: 700;
+    font-size: large;
+}
+div {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #cccccc00;
+    border-radius: 5px;
+    background-color: #f9f9f900;
+}
+#Chat {
+    position: fixed;
+    background-color: #0000;
+    font-size: 0%;
+    bottom: 0px;
+}
+img {
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
+}
