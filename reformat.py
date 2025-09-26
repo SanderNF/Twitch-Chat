@@ -51,14 +51,14 @@ def reformatMsg(msg):
             print(f' index: {EmoteIndex , len(EmotesList)}')
             if int(i) >= int(EmotesList[EmoteIndex][0]):
                 print('emote')
-                EmoteSpace = True
-                if len(tempMsg)!=0:
+                if ((EmoteSpace) != True):
                     out.append("".join(tempMsg))
                     a = EmotesList[EmoteIndex][2]
                     EmoteElement = str(f'<img alt="Emote" class="chat-image chat-line__message--emote" src="https://static-cdn.jtvnw.net/emoticons/v2/{a}/default/dark/1.0" srcset="https://static-cdn.jtvnw.net/emoticons/v2/{a}/default/dark/1.0 1x,https://static-cdn.jtvnw.net/emoticons/v2/{a}/default/dark/2.0 2x,https://static-cdn.jtvnw.net/emoticons/v2/{a}/default/dark/3.0 4x">')
                     print(EmoteElement)
                     out.append(EmoteElement)
                     tempMsg = []
+                EmoteSpace = True
                 if i >= int(EmotesList[EmoteIndex][1]):
                     print('end emote')
                     EmoteSpace = False
@@ -71,11 +71,11 @@ def reformatMsg(msg):
         print(i)
     out.append("".join(tempMsg))
     out.append("".join(end))
-    print(f'<code style="color:{msg.user['user_color']};">{msg.user['user_display_name']}</code>:')
-    print(" ".join(out))
+    #print(f'<code style="color:{msg.user['user_color']};">{msg.user['user_display_name']}</code>:')
+    #print(" ".join(out))
     with open('Chat.json', 'r') as f:
         b = json.load(f)
-    print(b)
+    #print(b)
     b.append(" ".join(out))
     while len(b) > 5:
         for k in range(len(b)-1):
@@ -83,7 +83,7 @@ def reformatMsg(msg):
         b.pop(len(b)-1)
     with open('Chat.json', 'w', encoding='utf-8') as f:
         json.dump(b, f, ensure_ascii=False, indent=4)
-    print(b)
+    #print(b)
 
 
 reformatMsg(test)
