@@ -3,11 +3,35 @@ import json
 
 
 class test:
-    text = "test  arelevFISH    arelevFISH   and  arelevHeart    arelevHeart   potato" 
+    text = "test  arelevFISH    arelevFISH   and  arelevHeart    arelevHeart   potato <test>" 
     emotes = {'emotesv2_87368d5d04464b66bd69f761b0116775': [{'start_position': '38', 'end_position': '48'}, {'start_position': '53', 'end_position': '63'}], 'emotesv2_09b2c36f1d6f490a9fdca84e61aad090': [{'start_position': '6', 'end_position': '15'}, {'start_position': '20', 'end_position': '29'}]} 
     chat = '<twitchAPI.chat.Chat object at 0x0000023201EA3A10>' 
     id = 'edb49e56-2fe8-4024-81ff-32d526c0afce'
     user = {'user_badge_info': None, 'user_badges': {'broadcaster': '1', 'glhf-pledge': '1'}, 'user_chat': '<twitchAPI.chat.Chat object at 0x00000244FE60B8C0>', 'user_color': '#2E8B57', 'user_display_name': 'sandernf__', 'user_mod': False, 'user_vip': False, 'user_turbo': False, 'user_subscriber': False, 'user_user_type': None, 'user_name': 'sandernf__'}
+
+
+def EscapeText(T):
+    #print(f'pre Escape: ', T)
+    a = []
+    for i in T:
+        if i == '<':
+            a.append('&lt;')
+        elif i == '>':
+            a.append('&gt;')
+        elif i == '&':
+            a.append('&amp;')
+        elif i == '"':
+            a.append('&quot;')
+        elif i == "'":
+            a.append('&apos;')
+        else:
+            a.append(i)
+
+    a = ''.join(a)
+        
+    #print(f'post Escape: ', a)
+    return a
+
 
 
 def reformatMsg(msg):
@@ -52,7 +76,8 @@ def reformatMsg(msg):
             if int(i) >= int(EmotesList[EmoteIndex][0]):
                 print('emote')
                 if ((EmoteSpace) != True):
-                    out.append("".join(tempMsg))
+                    tempMsg = "".join(tempMsg)
+                    out.append(EscapeText(tempMsg))
                     a = EmotesList[EmoteIndex][2]
                     EmoteElement = str(f'<img alt="Emote" class="chat-image chat-line__message--emote" src="https://static-cdn.jtvnw.net/emoticons/v2/{a}/default/dark/1.0" srcset="https://static-cdn.jtvnw.net/emoticons/v2/{a}/default/dark/1.0 1x,https://static-cdn.jtvnw.net/emoticons/v2/{a}/default/dark/2.0 2x,https://static-cdn.jtvnw.net/emoticons/v2/{a}/default/dark/3.0 4x">')
                     print(EmoteElement)
@@ -69,7 +94,7 @@ def reformatMsg(msg):
         else:
             tempMsg.append(msg.text[i])
         print(i)
-    out.append("".join(tempMsg))
+    out.append(EscapeText("".join(tempMsg)))
     out.append("".join(end))
     #print(f'<code style="color:{msg.user['user_color']};">{msg.user['user_display_name']}</code>:')
     #print(" ".join(out))
