@@ -46,3 +46,9 @@ img {
     width: 24px;
     height: 24px;
 }
+.chat-badge {
+    vertical-align: middle;
+    width: 18px;
+    height: 18px;
+    margin-right: 2px;
+}

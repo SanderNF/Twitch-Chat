@@ -5,14 +5,14 @@ from random import randrange
 from reformat import reformatMsg
 
 
-from flask import Flask, render_template, request, redirect
 
-
+import json
 
 from twitchAPI.twitch import Twitch
 from twitchAPI.oauth import UserAuthenticator
 from twitchAPI.type import AuthScope, ChatEvent
 from twitchAPI.chat import Chat, EventData, ChatMessage, ChatSub, ChatCommand
+from twitchAPI.helper import first
 import asyncio
 
 
@@ -36,17 +36,25 @@ async def on_ready(ready_event: EventData):
     await ready_event.chat.join_room(TARGET_CHANNEL)
     # you can do other bot initialization things in here
 
+    
+class Global:
+    GlobalBadges = []
+    ChannelBadges = []
+
 
 # this will be called whenever a message in a channel was send by either the bot OR another user
 async def on_message(msg: ChatMessage):
     for i in range(10000):
         slow = randrange(1, 100)*randrange(1,100)
+
+    
     
     class z:
         text = msg.text
         emotes = msg.emotes
         chat = msg.chat
         id = msg.id
+        source_id = msg.source_id
         user = {
         'user_badge_info':msg.user.badge_info,
         'user_badges':msg.user.badges,
@@ -62,7 +70,8 @@ async def on_message(msg: ChatMessage):
         'user_user_type':msg.user.user_type,
         'user_name':msg.user.name
         }
-    reformatMsg(z)
+    print(z.user['user_badges'])
+    reformatMsg(z, Global.GlobalBadges)
     
 
 
@@ -89,6 +98,8 @@ async def run():
     auth = UserAuthenticator(twitch, USER_SCOPE)
     token, refresh_token = await auth.authenticate()
     await twitch.set_user_authentication(token, USER_SCOPE, refresh_token)
+    user = await first(twitch.get_users(logins=TARGET_CHANNEL))
+    print(user)
 
     # create chat instance
     chat = await Chat(twitch)
@@ -103,10 +114,16 @@ async def run():
     chat.register_event(ChatEvent.SUB, on_sub)
     # there are more events, you can view them all in this documentation
 
-
+    
+    
 
     # we are done with our setup, lets start this bot up!
     chat.start()
+    
+
+    Global.twitch = twitch
+    Global.GlobalBadges.append(await Twitch.get_global_chat_badges(twitch)) 
+    Global.ChannelBadges.append(await Twitch.get_chat_badges(twitch,user.id))
 
     # lets run till we press enter in the console
     try:
@@ -115,6 +132,12 @@ async def run():
         # now we can close the chat bot and the twitch api client
         chat.stop()
         await twitch.close()
+
+
+
+
+
+
 
 
 # lets run our setup
