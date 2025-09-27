@@ -20,7 +20,7 @@ load_dotenv()
 APP_ID = env('app_id')
 APP_SECRET = env('app_secret')
 USER_SCOPE = [AuthScope.CHAT_READ, AuthScope.CHAT_EDIT]
-TARGET_CHANNEL = 'sandernf__'
+TARGET_CHANNEL = env('channel_name')
 #print(APP_ID)
 
 
