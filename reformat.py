@@ -33,8 +33,30 @@ def EscapeText(T):
     return a
 
 
+def formatBadges(data):
+    out = []
+    for i in data:
+        j = i[0]
+        #print(j)
+        out.append(f'<img alt="badge" aria-label="badge" class="chat-badge" src="{j.image_url_1x}" tabindex="0" srcset="{j.image_url_1x} 1x, {j.image_url_2x} 2x, {j.image_url_4x} 4x">')
+    return "".join(out)
 
-def reformatMsg(msg):
+
+
+def reformatMsg(msg, GlobalBadges):
+    #print(GlobalBadges)
+    try:
+        Badges = []
+        for i in GlobalBadges[0]:
+            #print(i)
+            for j in msg.user['user_badges']:
+                #print(j)
+                if (i.set_id == j):
+                    Badges.append(i.versions)
+                #print(GlobalBadges[0][i])
+    except Exception as e:
+        print(f'get badges failed: {e}')
+    #print(Badges)
     EmotesList = []
     try:
         for i in msg.emotes:
@@ -59,13 +81,16 @@ def reformatMsg(msg):
 
     out = [
             '<div>',
-            f'<code style="color:{msg.user['user_color']};">{msg.user['user_display_name']}</code>',
+            f'<code style="color:{msg.user['user_color']};">',
+            f'{formatBadges(Badges)}'
+            f'{msg.user['user_display_name']}</code>',
             '<p>'
            ]
     end = [
             '</p>',
             '</div>'
            ]
+    #print(out)
     EmoteIndex = 0
     EmoteSpace = False
     tempMsg = []
@@ -111,4 +136,4 @@ def reformatMsg(msg):
     #print(b)
 
 
-reformatMsg(test)
+#reformatMsg(test, [])
