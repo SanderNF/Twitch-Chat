@@ -10,9 +10,10 @@ class test:
     user = {'user_badge_info': None, 'user_badges': {'broadcaster': '1', 'glhf-pledge': '1'}, 'user_chat': '<twitchAPI.chat.Chat object at 0x00000244FE60B8C0>', 'user_color': '#2E8B57', 'user_display_name': 'sandernf__', 'user_mod': False, 'user_vip': False, 'user_turbo': False, 'user_subscriber': False, 'user_user_type': None, 'user_name': 'sandernf__'}
 
 
+    
 
 with open('Chat.json', 'w') as f:
-        json.dump([], f, ensure_ascii=False, indent=4)
+        json.dump(['<div><code>System</code><p>Chabox Started</p></div>'], f, ensure_ascii=False, indent=4)
 
 def EscapeText(T):
     #print(f'pre Escape: ', T)
