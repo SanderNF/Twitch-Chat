@@ -10,6 +10,10 @@ class test:
     user = {'user_badge_info': None, 'user_badges': {'broadcaster': '1', 'glhf-pledge': '1'}, 'user_chat': '<twitchAPI.chat.Chat object at 0x00000244FE60B8C0>', 'user_color': '#2E8B57', 'user_display_name': 'sandernf__', 'user_mod': False, 'user_vip': False, 'user_turbo': False, 'user_subscriber': False, 'user_user_type': None, 'user_name': 'sandernf__'}
 
 
+
+with open('Chat.json', 'w') as f:
+        json.dump([], f, ensure_ascii=False, indent=4)
+
 def EscapeText(T):
     #print(f'pre Escape: ', T)
     a = []
@@ -34,9 +38,10 @@ def EscapeText(T):
 
 
 def formatBadges(data):
+    print(f'formating badges: {data}')
     out = []
     for i in data:
-        j = i[0]
+        j = i
         #print(j)
         out.append(f'<img alt="badge" aria-label="badge" class="chat-badge" src="{j.image_url_1x}" tabindex="0" srcset="{j.image_url_1x} 1x, {j.image_url_2x} 2x, {j.image_url_4x} 4x">')
     return "".join(out)
@@ -47,20 +52,34 @@ def reformatMsg(msg, GlobalBadges):
     #print(GlobalBadges)
     try:
         Badges = []
+        PreBadges = []
+        print('starting badge reading')
+        for i in msg.user['user_badges']:
+            print(f'creating badge list: {i}')
+            PreBadges.append([i, msg.user['user_badges'][i]])
+            Badges.append([])
+        print(PreBadges)
+        print('start scrubing badges')
         for i in GlobalBadges[0]:
             #print(i)
-            for j in msg.user['user_badges']:
+            for j in range(len(PreBadges)):
                 #print(j)
-                if (i.set_id == j):
-                    Badges.append(i.versions)
+                jj = PreBadges[j][0]
+                jjj = int(PreBadges[j][1])-1
+                #print(jj)
+                #print((i.set_id == jj))
+                if (i.set_id == jj):
+                    print(j, jj, jjj)
+                    Badges[j] = (i.versions[jjj])
+                    print(Badges)
                 #print(GlobalBadges[0][i])
     except Exception as e:
         print(f'get badges failed: {e}')
-    #print(Badges)
+    print(Badges)
     EmotesList = []
     try:
         for i in msg.emotes:
-            print(i)
+            #print(i)
             ii = msg.emotes[i]
             for j in ii:
                 EmotesList.append([j['start_position'],j['end_position'],i])
@@ -118,7 +137,7 @@ def reformatMsg(msg, GlobalBadges):
                 tempMsg.append(msg.text[i])
         else:
             tempMsg.append(msg.text[i])
-        print(i)
+        #print(i)
     out.append(EscapeText("".join(tempMsg)))
     out.append("".join(end))
     #print(f'<code style="color:{msg.user['user_color']};">{msg.user['user_display_name']}</code>:')
@@ -131,8 +150,13 @@ def reformatMsg(msg, GlobalBadges):
         for k in range(len(b)-1):
             b[k] = b[k+1]
         b.pop(len(b)-1)
-    with open('Chat.json', 'w', encoding='utf-8') as f:
-        json.dump(b, f, ensure_ascii=False, indent=4)
+    try:
+        with open('Chat.json', 'w') as f:
+            json.dump(b, f, ensure_ascii=False, indent=4)
+    except Exception as e:
+        print(f'JSON save failed with error: {e} reseting chat')
+        with open('Chat.json', 'w') as f:
+            json.dump([f'<p> JSON save failed with error: {e} reseting chat </p>'], f, ensure_ascii=False, indent=4)
     #print(b)
 
 
