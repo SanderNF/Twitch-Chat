@@ -44,8 +44,7 @@ class Global:
 
 # this will be called whenever a message in a channel was send by either the bot OR another user
 async def on_message(msg: ChatMessage):
-    for i in range(10000):
-        slow = randrange(1, 100)*randrange(1,100)
+    
 
     
     
@@ -71,7 +70,7 @@ async def on_message(msg: ChatMessage):
         'user_name':msg.user.name
         }
     print(z.user['user_badges'])
-    reformatMsg(z, Global.GlobalBadges)
+    reformatMsg(z, Global.GlobalBadges, Global.ChannelBadges)
     
 
 

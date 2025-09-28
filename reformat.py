@@ -49,7 +49,7 @@ def formatBadges(data):
 
 
 
-def reformatMsg(msg, GlobalBadges):
+def reformatMsg(msg, GlobalBadges, ChannelBadges):
     #print(GlobalBadges)
     try:
         Badges = []
@@ -70,10 +70,37 @@ def reformatMsg(msg, GlobalBadges):
                 #print(jj)
                 #print((i.set_id == jj))
                 if (i.set_id == jj):
-                    print(j, jj, jjj)
-                    Badges[j] = (i.versions[jjj])
-                    print(Badges)
+                    #print(j, jj, jjj)
+                    try:
+                        #print(i.versions[jjj])
+                        Badges[j] = (i.versions[jjj])
+                    except Exception as e:
+                        print(f'Badge internal error: {e}')
+                    #print(Badges)
                 #print(GlobalBadges[0][i])
+        for i in ChannelBadges[0]:
+            #print(i)
+            for j in range(len(PreBadges)):
+                #print(j)
+                jj = PreBadges[j][0]
+                jjj = int(PreBadges[j][1])
+                #print(jj)
+                #print((i.set_id == jj))
+                if (i.set_id == jj):
+                    #print(j, jj, jjj)
+                    #print(i)
+                    for k in range(len(i.versions)):
+                        kk = i.versions[k]
+                        try:
+                            print(kk.id, jjj+1)
+                            if int(kk.id) == (jjj):
+                                Badges[j] = kk
+                        except:
+                            print('sander you stupid fuck')
+                    
+                    #print(Badges)
+                #print(GlobalBadges[0][i])
+        
     except Exception as e:
         print(f'get badges failed: {e}')
     print(Badges)
