@@ -24,8 +24,9 @@ code {
     border: 1px solid #000000;
     border-radius: 16px;
     font-size: medium;
-    font-weight: 700;
+    font-weight: 800;
     font-size: large;
+    -webkit-text-stroke: 1px black;
 }
 div {
     font-family: Arial, sans-serif;
