@@ -39,7 +39,7 @@ def EscapeText(T):
 
 
 def formatBadges(data):
-    print(f'formating badges: {data}')
+    #print(f'formating badges: {data}')
     out = []
     for i in data:
         j = i
@@ -50,17 +50,18 @@ def formatBadges(data):
 
 
 def reformatMsg(msg, GlobalBadges, ChannelBadges):
+    print(msg.text)
     #print(GlobalBadges)
     try:
         Badges = []
         PreBadges = []
-        print('starting badge reading')
+        #print('starting badge reading')
         for i in msg.user['user_badges']:
-            print(f'creating badge list: {i}')
+            #print(f'creating badge list: {i}')
             PreBadges.append([i, msg.user['user_badges'][i]])
             Badges.append([])
-        print(PreBadges)
-        print('start scrubing badges')
+        #print(PreBadges)
+        #print('start scrubing badges')
         for i in GlobalBadges[0]:
             #print(i)
             for j in range(len(PreBadges)):
@@ -92,9 +93,10 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
                     for k in range(len(i.versions)):
                         kk = i.versions[k]
                         try:
-                            print(kk.id, jjj+1)
+                            #print(kk.id, jjj)
                             if int(kk.id) == (jjj):
                                 Badges[j] = kk
+                                break
                         except:
                             print('sander you stupid fuck')
                     
@@ -103,7 +105,7 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
         
     except Exception as e:
         print(f'get badges failed: {e}')
-    print(Badges)
+    #print(Badges)
     EmotesList = []
     try:
         for i in msg.emotes:
@@ -116,14 +118,14 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
     except Exception as e:
         print(f'Shits Fucked: {e}')
     
-    print(EmotesList)
+    #print(EmotesList)
 
     def x(e):
         a = int(e[0])
         print(e, a)
         return a
     EmotesList.sort(key=x)
-    print(f'Sorted list \n {EmotesList}')
+    #print(f'Sorted list \n {EmotesList}')
 
 
     out = [
@@ -144,20 +146,20 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
     for i in range(len(msg.text)):
         
         if EmoteIndex < len(EmotesList):
-            print(f' index: {EmoteIndex , len(EmotesList)}')
+            #print(f' index: {EmoteIndex , len(EmotesList)}')
             if int(i) >= int(EmotesList[EmoteIndex][0]):
-                print('emote')
+                #print('emote')
                 if ((EmoteSpace) != True):
                     tempMsg = "".join(tempMsg)
                     out.append(EscapeText(tempMsg))
                     a = EmotesList[EmoteIndex][2]
                     EmoteElement = str(f'<img alt="Emote" class="chat-image chat-line__message--emote" src="https://static-cdn.jtvnw.net/emoticons/v2/{a}/default/dark/1.0" srcset="https://static-cdn.jtvnw.net/emoticons/v2/{a}/default/dark/1.0 1x,https://static-cdn.jtvnw.net/emoticons/v2/{a}/default/dark/2.0 2x,https://static-cdn.jtvnw.net/emoticons/v2/{a}/default/dark/3.0 4x">')
-                    print(EmoteElement)
+                    #print(EmoteElement)
                     out.append(EmoteElement)
                     tempMsg = []
                 EmoteSpace = True
                 if i >= int(EmotesList[EmoteIndex][1]):
-                    print('end emote')
+                    #print('end emote')
                     EmoteSpace = False
                     EmoteIndex += 1
 

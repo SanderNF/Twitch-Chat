@@ -126,7 +126,7 @@ async def run():
 
     # lets run till we press enter in the console
     try:
-        input('press ENTER to stop\\n')
+        input('press ENTER to stop \n')
     finally:
         # now we can close the chat bot and the twitch api client
         chat.stop()
