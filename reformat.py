@@ -12,7 +12,7 @@ class test:
 
     
 
-with open('Chat.json', 'w') as f:
+with open('Chat.json', 'w',  encoding='utf-8') as f:
         json.dump(['<div><code>System</code><p>Chabox Started</p></div>'], f, ensure_ascii=False, indent=4)
 
 def EscapeText(T):
@@ -94,7 +94,7 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
                         kk = i.versions[k]
                         try:
                             #print(kk.id, jjj)
-                            if int(kk.id) == (jjj):
+                            if int(kk.id) == (jjj+1):
                                 Badges[j] = kk
                                 break
                         except:
@@ -172,7 +172,7 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
     out.append("".join(end))
     #print(f'<code style="color:{msg.user['user_color']};">{msg.user['user_display_name']}</code>:')
     #print(" ".join(out))
-    with open('Chat.json', 'r') as f:
+    with open('Chat.json', 'r',  encoding='utf-8') as f:
         b = json.load(f)
     #print(b)
     b.append(" ".join(out))
@@ -181,11 +181,11 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
             b[k] = b[k+1]
         b.pop(len(b)-1)
     try:
-        with open('Chat.json', 'w') as f:
+        with open('Chat.json', 'w',  encoding='utf-8') as f:
             json.dump(b, f, ensure_ascii=False, indent=4)
     except Exception as e:
         print(f'JSON save failed with error: {e} reseting chat')
-        with open('Chat.json', 'w') as f:
+        with open('Chat.json', 'w', encoding='utf-8') as f:
             json.dump([f'<p> JSON save failed with error: {e} reseting chat </p>'], f, ensure_ascii=False, indent=4)
     #print(b)
 
