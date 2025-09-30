@@ -62,6 +62,10 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
             Badges.append([])
         #print(PreBadges)
         #print('start scrubing badges')
+        for i in range(len(PreBadges)):
+            if len(PreBadges[i][0]) <= 0:
+                PreBadges[i][0] = 1
+                print('fixed one badge value')
         for i in GlobalBadges[0]:
             #print(i)
             for j in range(len(PreBadges)):
@@ -94,7 +98,7 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
                         kk = i.versions[k]
                         try:
                             #print(kk.id, jjj)
-                            if int(kk.id) == (jjj+1):
+                            if int(kk.id) == (jjj):
                                 Badges[j] = kk
                                 break
                         except:
