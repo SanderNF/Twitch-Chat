@@ -71,16 +71,20 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
             for j in range(len(PreBadges)):
                 #print(j)
                 jj = PreBadges[j][0]
-                jjj = int(PreBadges[j][1])-1
+                jjj = int(PreBadges[j][1])
                 #print(jj)
                 #print((i.set_id == jj))
                 if (i.set_id == jj):
                     #print(j, jj, jjj)
-                    try:
-                        #print(i.versions[jjj])
-                        Badges[j] = (i.versions[jjj])
-                    except Exception as e:
-                        print(f'Badge internal error: {e}')
+                    for k in range(len(i.versions)):
+                        kk = i.versions[k]
+                        try:
+                            #print(i.versions[jjj])
+                            if int(kk.id) == (jjj):
+                                Badges[j] = kk
+                                break
+                        except Exception as e:
+                            print(f'Badge internal error: {e}')
                     #print(Badges)
                 #print(GlobalBadges[0][i])
         for i in ChannelBadges[0]:
@@ -102,7 +106,7 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
                                 Badges[j] = kk
                                 break
                         except:
-                            print('sander you stupid fuck')
+                            print('sander you stupid fuck #2')
                     
                     #print(Badges)
                 #print(GlobalBadges[0][i])
