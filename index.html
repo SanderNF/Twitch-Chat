@@ -8,14 +8,23 @@
         async function fetchChat() {
                 try {
                     fetch("./Chat.json")
-                        .then(res => res.json())
-                        .then(data => {
-                            Chat = data;
-                            oldChat = document.getElementById("Chat");
-                            if (Chat != oldChat.innerHTML){
-                                oldChat.innerHTML = Chat
+                        //.then(res => res.json())
+                        .then(res => {
+                            //res = res.json();
+                            //console.log(res);
+                            if (res.status === 200) {
+                                return res.json();
                             }
-                        });
+                            return Promise.reject(new Error('HTTP status ' + res.status));
+                        })
+                        .then(data => {
+                            const Chat = data;
+                            const oldChat = document.getElementById("Chat");
+                            if (Chat != oldChat.innerHTML){
+                                oldChat.innerHTML = Chat;
+                            }
+                        })
+                        .catch(error => console.error(error));
                 }
                 catch (error) {
                     console.error(error);
