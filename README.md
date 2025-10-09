@@ -6,7 +6,7 @@ A web server that reads twitch chat and displays whit custom styling
 Make sure Python is installed
 
 In CMD run 
-```batchfile
+```batch
 pip install twitchAPI
 pip install dotenv
 pip install asyncio
