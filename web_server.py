@@ -20,6 +20,18 @@ CACHED_TEXT = b'{}'  # bytes
 LAST_ERROR = None
 
 
+
+
+
+
+try:
+    with open('log.json', 'r',  encoding='utf-8') as f:
+        json.load(f)
+except FileNotFoundError:
+    with open('log.json', 'w',  encoding='utf-8') as f:
+        json.dump(["log's are saved here"], f, ensure_ascii=False, indent=4)
+
+
 def loader_loop(path: str, interval: float):
     global CACHED_TEXT, LAST_ERROR
     while True:
@@ -154,7 +166,33 @@ class JSONRequestHandler(BaseHTTPRequestHandler):
 
     def log_message(self, format, *args):
         # keep logs minimal
-        print("%s - - [%s] %s" % (self.client_address[0], self.log_date_time_string(), format % args))
+        log_status = ''
+        log_type = ''
+        write_log = False
+        if args[1] == '200':
+            log_status = '\x1b[1;30m'
+            log_type = 'success'
+        elif args[1] == '404':
+            log_status = '\x1b[1;33m'
+            log_type = 'warning'
+            write_log = True
+        else:
+            log_status = '\x1b[1;31m]'
+            log_type = 'error'
+            write_log = True
+        log_message = ("%s - - [%s] %s" % (self.client_address[0], self.log_date_time_string(), format % args))
+        print(log_status, log_message, '\x1b[1;30m')
+        if write_log:
+            print(f'saving {log_type} to file')
+            with open('log.json', 'r',  encoding='utf-8') as f:
+                b = json.load(f)
+            #print(b)
+            b.append([log_type, log_message])
+            try:
+                with open('log.json', 'w',  encoding='utf-8') as f:
+                    json.dump(b, f, ensure_ascii=False, indent=4)
+            except Exception as e:
+                print(f'Log save failed with error: {e} \n {Exception}')
 
 
 def main():
