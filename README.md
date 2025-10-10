@@ -20,4 +20,4 @@ channel_name=<your-channel-name>
 
 Run `Quick_setup.ps1` 
 > [!NOTE]
-> this will setup the venv and promt to install as a startup program
+> this will setup the venv and prompt to install as a startup program
