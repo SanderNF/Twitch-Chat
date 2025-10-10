@@ -407,3 +407,6 @@ FodyWeavers.xsd
 
 *.json
 Chat box TODO list.txt
+/Lib
+pyvenv.cfg
+/Scripts
