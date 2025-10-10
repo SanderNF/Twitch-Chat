@@ -1,5 +1,5 @@
 # Twitch-Chat
-A web server that reads twitch chat and displays whit custom styling
+A simple application that reads twitch chat and displays it in a broweser with aditional CSS styling
 
 
 # setup 
