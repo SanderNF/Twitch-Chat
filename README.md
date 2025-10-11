@@ -1,5 +1,5 @@
 # Twitch-Chat
-A simple application that reads twitch chat and displays it in a broweser with aditional CSS styling
+A simple application that reads twitch chat and displays it in a browser with aditional CSS styling
 
 
 # setup 
@@ -18,6 +18,6 @@ app_secret=<your-app-secret>
 channel_name=<your-channel-name>
 ```
 
-Run `Quick_setup.ps1` 
+Run `Quick_setup.bat` 
 > [!NOTE]
-> this will setup the venv and prompt to install as a startup program
+> this will setup the venv and start the server
