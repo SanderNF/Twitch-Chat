@@ -17,5 +17,10 @@ echo %SCRIPT_DIR%
 rem Install requirements
 "%SCRIPT_DIR%Scripts\pip.exe" install -r "%SCRIPT_DIR%\requirements.txt"
 
-rem Run the Start server batch in the script directory
-call "%SCRIPT_DIR%Start_server.bat"
+
+rem Create .env with placeholders (escape < and >)
+(
+    echo app_id=^<your-app-id^>
+    echo app_secret=^<your-app-secret^>
+    echo channel_name=^<your-channel-name^>
+) > "%SCRIPT_DIR%.env"

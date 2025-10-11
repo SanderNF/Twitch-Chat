@@ -2,22 +2,21 @@
 A simple application that reads twitch chat and displays it in a browser with aditional CSS styling
 
 
-# setup 
+# Setup 
 Make sure Python is installed
+
+Run `Quick_setup.bat` 
+> [!NOTE]
+> this will setup the venv and start the server
 
 at: https://dev.twitch.tv/console \
 Create a Application set to Confidential 
 
 From Your dev dashboard grab your `Client ID` and `Client Secret`
 
-Create a flie called `.env` and format it like this:
+open the file `.env` and insert `Client ID`, `Client Secret` and `your-channel-name`
+> [!CAUTION]
+> Never share your `Client ID` and `Client Secret` with anyone!
 
-```dotenv
-app_id=<your-app-id>
-app_secret=<your-app-secret>
-channel_name=<your-channel-name>
-```
-
-Run `Quick_setup.bat` 
-> [!NOTE]
-> this will setup the venv and start the server
+# Usage
+to run the aplication just run `Start_server.bat`
