@@ -13,7 +13,7 @@ class test:
     
 
 with open('Chat.json', 'w',  encoding='utf-8') as f:
-        json.dump(['<div><code>System</code><p>Chabox Started</p></div>'], f, ensure_ascii=False, indent=4)
+        json.dump([{"msg": "<code>System</code><p>Chabox Started</p>", "id": "123030399"}], f, ensure_ascii=False, indent=4)
 
 def EscapeText(T):
     #print(f'pre Escape: ', T)
@@ -137,15 +137,13 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
 
 
     out = [
-            '<div>',
             f'<code style="color:{msg.user['user_color']};">',
             f'{formatBadges(Badges)}'
             f'{msg.user['user_display_name']}</code>',
             '<p>'
            ]
     end = [
-            '</p>',
-            '</div>'
+            '</p>'
            ]
     #print(out)
     EmoteIndex = 0
@@ -183,7 +181,7 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
     with open('Chat.json', 'r',  encoding='utf-8') as f:
         b = json.load(f)
     #print(b)
-    b.append(" ".join(out))
+    b.append({"msg":" ".join(out), "id":msg.id})
     while len(b) > 5:
         for k in range(len(b)-1):
             b[k] = b[k+1]
