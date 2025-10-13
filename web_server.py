@@ -30,6 +30,10 @@ try:
 except FileNotFoundError:
     with open('log.json', 'w',  encoding='utf-8') as f:
         json.dump(["log's are saved here"], f, ensure_ascii=False, indent=4)
+except Exception as e:
+    print(f'Opening log failed with error: {e}')
+    with open('log.json', 'w',  encoding='utf-8') as f:
+        json.dump(["log's are saved here"], f, ensure_ascii=False, indent=4)
 
 
 def loader_loop(path: str, interval: float):
