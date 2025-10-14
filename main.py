@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 from random import randrange
 from reformat import reformatMsg
+from deleteMsg import deleteById
 
 
 
@@ -73,6 +74,10 @@ async def on_message(msg: ChatMessage):
     reformatMsg(z, Global.GlobalBadges, Global.ChannelBadges)
     
 
+async def on_message_delete(msg: ChatMessage):
+    print(msg)
+    msgId = msg.message_id
+    deleteById(msgId)
 
 
 
@@ -109,6 +114,8 @@ async def run():
     chat.register_event(ChatEvent.READY, on_ready)
     # listen to chat messages
     chat.register_event(ChatEvent.MESSAGE, on_message)
+    # listen to chat messages
+    chat.register_event(ChatEvent.MESSAGE_DELETE, on_message_delete)
     # listen to channel subscriptions
     chat.register_event(ChatEvent.SUB, on_sub)
     # there are more events, you can view them all in this documentation
