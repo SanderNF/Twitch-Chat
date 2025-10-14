@@ -54,9 +54,11 @@ img {
     margin-right: 2px;
 }
 .message {
-    margin-bottom: -50px;
+    margin-bottom: -100px;
+    margin-top: 140px;
     transition: margin-bottom 0.5s ease-out;
 }
 .mover {
     margin-bottom: 40px;
+    margin-top: 40px;
 }

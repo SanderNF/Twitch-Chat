@@ -23,25 +23,32 @@
                             const pageMessages = document.querySelectorAll(".message");
                             //console.log(`old chat: ${oldChat.innerHTML}`); // Log the old chat
                             //console.log(`new chat: ${Chat}`); // Log the new chat
-                            
+
                             
                             if (Chat != oldChat.innerHTML){
                                 for (let k = 0; k < Chat.length; k++) {
-                                    const msg = document.createElement("div");
-                                    msg.classList.add("message");
-                                    msg.innerHTML = Chat[k].msg;
-                                    msg.id = `${Chat[k].id}`;
-                                    //msg.style.marginBottom = "-50px";
-                                    //msg.style.transition = "margin-bottom 0.5s ease-out";
-                                    //console.log(`adding chat: ${Chat[k]}`); // Log the new chat
-                                    if (document.getElementById(msg.id)) {
-                                        //console.log(`skipping duplicate id: ${msg.id}`);
-                                        continue;
+                                    if (Chat[k].id.substring(Chat[k].id.length - 8) === "-deleted") {
+                                        const delMsg = document.getElementById(Chat[k].id.replace("-deleted", ""));
+                                        if (delMsg) {
+                                            delMsg.lastChild.innerHTML = "<i>Message deleted</i>";
+                                        }
+                                    } else {
+                                        const msg = document.createElement("div");
+                                        msg.classList.add("message");
+                                        msg.innerHTML = Chat[k].msg;
+                                        msg.id = `${Chat[k].id}`;
+                                        //msg.style.marginBottom = "-50px";
+                                        //msg.style.transition = "margin-bottom 0.5s ease-out";
+                                        //console.log(`adding chat: ${Chat[k]}`); // Log the new chat
+                                        if (document.getElementById(msg.id)) {
+                                            //console.log(`skipping duplicate id: ${msg.id}`);
+                                            continue;
+                                        }
+                                        document.getElementById("Chat").appendChild(msg);
+                                        setTimeout(() => {
+                                            msg.classList.add("mover");
+                                        }, 20); // Slight delay to ensure the transition occurs
                                     }
-                                    document.getElementById("Chat").appendChild(msg);
-                                    setTimeout(() => {
-                                        msg.classList.add("mover");
-                                    }, 20); // Slight delay to ensure the transition occurs
                                 }
                             }
                             setTimeout(() => {
