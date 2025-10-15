@@ -7,13 +7,13 @@ p {
     color: white;
     font-family: Arial, sans-serif;
     background-color: #3591D9;
-    padding: 6px 8px;
+    padding: 12px 16px;
     border: 1px solid #000000;
-    border-radius: 18px;
-    max-width: 400px;
+    border-radius: 36px;
+    max-width: 800px;
     width: fit-content;
     margin: 0;
-    font-size: medium;
+    font-size: 2.5rem;
     text-align: center;
     text-rendering: optimizeLegibility;
     word-break: break-word;
@@ -23,12 +23,11 @@ code {
     color: white;
     font-family: Arial, sans-serif;
     background-color: #F05DD2;
-    padding: 6px 8px;
+    padding: 8px 16px;
     border: 1px solid #000000;
-    border-radius: 16px;
-    font-size: medium;
+    border-radius: 32px;
     font-weight: 800;
-    font-size: large;
+    font-size: 2.5rem;
     z-index: 100;
     -webkit-text-stroke: 1px black;
 }
@@ -57,10 +56,10 @@ img {
 }
 .chat-badge {
     vertical-align: middle;
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
     margin-right: 2px;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
 }
 .message {
     margin-bottom: -100px;
@@ -73,13 +72,13 @@ img {
 }
 
 .msgIcon {
-    --size: 30px;
+    --size: 60px;
     vertical-align: middle;
     width: var(--size);
     height: var(--size);
     margin: 2px;
     margin-top: 7px;
-    translate: -5px 15px;
+    translate: -10px 35px;
     transform: scale(1.5, 1.5) rotate(6deg);
     z-index: 1;
     filter: blur(0.15px);
@@ -89,7 +88,7 @@ img {
     align-items: flex-start;
     max-width: calc(400px + var(--size));
     margin-left: 15px;
-    margin-top: -5px;
+    margin-top: -12.5px;
     margin-bottom: -35px;
     margin-right: 0px;
     padding: 0;
