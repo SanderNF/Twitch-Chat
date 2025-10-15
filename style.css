@@ -1,4 +1,8 @@
-
+body {
+    background-color: #333;
+    margin: 0;
+    padding: 0;
+}
 p {
     color: white;
     font-family: Arial, sans-serif;
@@ -8,13 +12,12 @@ p {
     border-radius: 18px;
     max-width: 400px;
     width: fit-content;
-    margin-left: 15px;
-    margin-top: 0;
-    margin-bottom: -35px;
+    margin: 0;
     font-size: medium;
     text-align: center;
     text-rendering: optimizeLegibility;
     word-break: break-word;
+    z-index: 1;
 }
 code {
     color: white;
@@ -26,12 +29,15 @@ code {
     font-size: medium;
     font-weight: 800;
     font-size: large;
+    z-index: 100;
     -webkit-text-stroke: 1px black;
 }
 div {
     font-family: Arial, sans-serif;
-    margin: 40px;
-    padding: 10px;
+    margin: 0px;
+    margin-left: 0px;
+    margin-right: 7.5px;
+    padding: 5px;
     border: 1px solid #cccccc00;
     border-radius: 5px;
     background-color: #f9f9f900;
@@ -61,4 +67,27 @@ img {
 .mover {
     margin-bottom: 40px;
     margin-top: 40px;
+}
+
+.msgIcon {
+    --size: 20px;
+    vertical-align: middle;
+    width: var(--size);
+    height: var(--size);
+    margin: 2px;
+    margin-top: 7px;
+    translate: -5px -2px;
+    transform: scale(1.5, 1.5);
+    z-index: 1;
+    filter: blur(0.15px);
+}
+.msgContent {
+    display: flex;
+    align-items: flex-start;
+    max-width: calc(400px + var(--size));
+    margin-left: 15px;
+    margin-top: 2.5px;
+    margin-bottom: -35px;
+    padding: 0;
+    z-index: 1;
 }

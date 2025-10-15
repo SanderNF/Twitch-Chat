@@ -136,14 +136,24 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
     #print(f'Sorted list \n {EmotesList}')
 
 
+    msgIcon = ""
+    print(msg.text[-1:])
+    if (msg.text[-1:] == "!"):
+        msgIcon = '<img class="msgIcon" src="\SVG\exclamation-mark.svg">'
+    elif (msg.text[-1:] == "?"):
+        msgIcon = '<img class="msgIcon" src="\SVG\question-mark.svg">'
+
     out = [
             f'<code style="color:{msg.user['user_color']};">',
             f'{formatBadges(Badges)}'
             f'{msg.user['user_display_name']}</code>',
+            '<div class="msgContent">',
             '<p>'
            ]
     end = [
-            '</p>'
+            '</p>',
+            msgIcon,
+            '</div>'
            ]
     #print(out)
     EmoteIndex = 0
