@@ -13,7 +13,7 @@ class test:
     
 
 with open('Chat.json', 'w',  encoding='utf-8') as f:
-        json.dump([{"msg": '<code>System</code><div class="msgContent"><p>Chabox Started</p></div>', "id": "123030399"}], f, ensure_ascii=False, indent=4)
+        json.dump([{"msg": '<div style="display: flex;"><div class="chatMsg"><code>System</code><div class="msgContent"><p>Chabox Started</p></div></div></div>', "id": "123030399"}], f, ensure_ascii=False, indent=4)
 
 def EscapeText(T):
     #print(f'pre Escape: ', T)
@@ -139,11 +139,13 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
     msgIcon = ""
     print(msg.text[-1:])
     if (msg.text[-1:] == "!"):
-        msgIcon = '<img class="msgIcon" src="\SVG\exclamation-mark.svg">'
+        msgIcon = '<img class="msgIcon" src="/SVG/exclamation-mark.svg">'
     elif (msg.text[-1:] == "?"):
-        msgIcon = '<img class="msgIcon" src="\SVG\question-mark.svg">'
+        msgIcon = '<img class="msgIcon" src="/SVG/question-mark.svg">'
 
     out = [
+            '<div style="display: flex;">',
+            '<div class="chatMsg">',
             f'<code style="color:{msg.user['user_color']};">',
             f'{formatBadges(Badges)}'
             f'{msg.user['user_display_name']}</code>',
@@ -152,6 +154,8 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
            ]
     end = [
             '</p>',
+            '</div>',
+            '</div>',
             msgIcon,
             '</div>'
            ]
