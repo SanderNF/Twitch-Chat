@@ -36,8 +36,8 @@ div {
     font-family: Arial, sans-serif;
     margin: 0px;
     margin-left: 0px;
-    margin-right: 7.5px;
-    padding: 5px;
+    margin-right: 0px;
+    padding: 5px 0px;
     border: 1px solid #cccccc00;
     border-radius: 5px;
     background-color: #f9f9f900;
@@ -47,6 +47,8 @@ div {
     background-color: #0000;
     font-size: 0%;
     bottom: 0px;
+    padding-right: 0px;
+    margin-right: 0px;
 }
 img {
     vertical-align: middle;
@@ -88,6 +90,7 @@ img {
     margin-left: 15px;
     margin-top: 2.5px;
     margin-bottom: -35px;
+    margin-right: 0px;
     padding: 0;
     z-index: 1;
 }
