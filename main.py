@@ -18,8 +18,8 @@ import asyncio
 
 
 load_dotenv()
-APP_ID = env('app_id')
-APP_SECRET = env('app_secret')
+APP_ID = env('client_id')
+APP_SECRET = env('client_secret')
 USER_SCOPE = [AuthScope.CHAT_READ, AuthScope.CHAT_EDIT]
 TARGET_CHANNEL = env('channel_name')
 #print(APP_ID)

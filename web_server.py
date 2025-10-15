@@ -67,6 +67,8 @@ def _guess_content_type(path: str) -> str:
         return "application/json; charset=utf-8"
     if path.endswith(".js"):
         return "application/javascript; charset=utf-8"
+    if path.endswith(".svg"):
+        return "image/svg+xml; charset=utf-8"
     return "application/octet-stream"
 
 

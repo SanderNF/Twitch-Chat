@@ -23,7 +23,7 @@ rem Install requirements
 
 rem Create .env with placeholders (escape < and >)
 (
-    echo app_id=^<your-app-id^>
-    echo app_secret=^<your-app-secret^>
+    echo client_id=^<your-app-id^>
+    echo client_secret=^<your-app-secret^>
     echo channel_name=^<your-channel-name^>
 ) > %SCRIPT_DIR%.env
