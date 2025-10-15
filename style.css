@@ -73,14 +73,14 @@ img {
 }
 
 .msgIcon {
-    --size: 20px;
+    --size: 30px;
     vertical-align: middle;
     width: var(--size);
     height: var(--size);
     margin: 2px;
     margin-top: 7px;
-    translate: -5px -2px;
-    transform: scale(1.5, 1.5);
+    translate: -5px 15px;
+    transform: scale(1.5, 1.5) rotate(6deg);
     z-index: 1;
     filter: blur(0.15px);
 }
@@ -89,9 +89,14 @@ img {
     align-items: flex-start;
     max-width: calc(400px + var(--size));
     margin-left: 15px;
-    margin-top: 2.5px;
+    margin-top: -5px;
     margin-bottom: -35px;
     margin-right: 0px;
     padding: 0;
     z-index: 1;
+}
+.chatMsg {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
