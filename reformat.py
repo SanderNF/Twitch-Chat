@@ -13,7 +13,7 @@ class test:
     
 
 with open('Chat.json', 'w',  encoding='utf-8') as f:
-        json.dump([{"msg": "<code>System</code><p>Chabox Started</p>", "id": "123030399"}], f, ensure_ascii=False, indent=4)
+        json.dump([{"msg": '<code>System</code><div class="msgContent"><p>Chabox Started</p></div>', "id": "123030399"}], f, ensure_ascii=False, indent=4)
 
 def EscapeText(T):
     #print(f'pre Escape: ', T)
