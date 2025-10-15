@@ -51,8 +51,9 @@ div {
 }
 img {
     vertical-align: middle;
-    width: 24px;
-    height: 24px;
+    margin: 0px;
+    width: 48px;
+    height: 48px;
 }
 .chat-badge {
     vertical-align: middle;
