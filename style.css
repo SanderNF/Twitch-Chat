@@ -80,7 +80,7 @@ img {
     margin: 2px;
     margin-top: 7px;
     translate: -10px 35px;
-    transform: scale(1.5, 1.5) rotate(6deg);
+    transform: scale(1.5, 1.5) rotate(10deg);
     z-index: 1;
     filter: blur(0.15px);
 }

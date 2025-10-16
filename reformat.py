@@ -49,6 +49,18 @@ def formatBadges(data):
 
 
 
+def hasBadge(badgesList, badgeName):
+    try:
+        badge = badgesList[badgeName]
+        print(badge)
+        return (int(badge) > 0.5)
+    except TypeError:
+        print('hasBadge type error (debuging only)')
+        return False
+    except Exception as e:
+        return False
+
+
 def reformatMsg(msg, GlobalBadges, ChannelBadges):
     print(msg.text)
     #print(GlobalBadges)
@@ -138,7 +150,18 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
 
     msgIcon = ""
     print(msg.text[-1:])
-    if (msg.text[-1:] == "!"):
+    #print("https://discord.gg/fwxZNJy" in msg.text)
+    if "https://discord.gg/fwxZNJy" in msg.text:
+        msgIcon = '<img class="msgIcon" src="/SVG/Discord.svg">'
+    elif (hasBadge(msg.user['user_badges'], 'staff')):
+        msgIcon = '<img class="msgIcon" src="/SVG/Staff.svg">'
+    elif (hasBadge(msg.user['user_badges'], 'bot-badge')):
+        msgIcon = '<img class="msgIcon" src="/SVG/Bot.svg">'
+    elif (msg.user['is_mod']):
+        msgIcon = '<img class="msgIcon" src="/SVG/Mod.svg">'
+    elif (hasBadge(msg.user['user_badges'], 'artist-badge')):
+        msgIcon = '<img class="msgIcon" src="/SVG/Artist.svg">'
+    elif (msg.text[-1:] == "!"):
         msgIcon = '<img class="msgIcon" src="/SVG/exclamation-mark.svg">'
     elif (msg.text[-1:] == "?"):
         msgIcon = '<img class="msgIcon" src="/SVG/question-mark.svg">'
