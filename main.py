@@ -63,14 +63,15 @@ async def on_message(msg: ChatMessage):
         'user_chat':msg.user.chat,
         'user_color':msg.user.color,
         'user_display_name':msg.user.display_name,
-        'user_mod':msg.user.mod,
-        'user_vip':msg.user.vip,
-        'user_turbo':msg.user.turbo,
-        'user_subscriber':msg.user.subscriber,
+        'is_mod':msg.user.mod,
+        'is_vip':msg.user.vip,
+        'is_turbo':msg.user.turbo,
+        'is_subscriber':msg.user.subscriber,
         'user_user_type':msg.user.user_type,
         'user_name':msg.user.name
         }
     print(z.user['user_badges'])
+    print(z.user)
     reformatMsg(z, Global.GlobalBadges, Global.ChannelBadges)
     
 
