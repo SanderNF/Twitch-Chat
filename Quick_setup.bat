@@ -27,4 +27,5 @@ rem Create .env with placeholders (escape < and >)
     echo client_secret=^<your-app-secret^>
     echo channel_name=^<your-channel-name^>
     echo max_large_emotes=^<any-integer^>
+    echo discord_link=^<discord_invite_link^>
 ) > %SCRIPT_DIR%.env
