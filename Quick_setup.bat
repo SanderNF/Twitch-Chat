@@ -26,4 +26,5 @@ rem Create .env with placeholders (escape < and >)
     echo client_id=^<your-app-id^>
     echo client_secret=^<your-app-secret^>
     echo channel_name=^<your-channel-name^>
+    echo max_large_emotes=^<any-integer^>
 ) > %SCRIPT_DIR%.env
