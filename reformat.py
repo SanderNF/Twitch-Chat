@@ -159,10 +159,10 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
         msgIcon = '<img class="msgIcon" src="/SVG/Staff.svg">'
     elif (hasBadge(msg.user['user_badges'], 'bot-badge')):
         msgIcon = '<img class="msgIcon" src="/SVG/Bot.svg">'
-    elif (msg.user['is_mod']):
-        msgIcon = '<img class="msgIcon" src="/SVG/Mod.svg">'
     elif (hasBadge(msg.user['user_badges'], 'artist-badge')):
         msgIcon = '<img class="msgIcon" src="/SVG/Artist.svg">'
+    elif (msg.user['is_mod']):
+        msgIcon = '<img class="msgIcon" src="/SVG/Mod.svg">'
     elif (msg.text[-1:] == "!"):
         msgIcon = '<img class="msgIcon" src="/SVG/exclamation-mark.svg">'
     elif (msg.text[-1:] == "?"):
