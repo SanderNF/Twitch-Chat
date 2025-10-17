@@ -153,7 +153,7 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
     msgIcon = ""
     print(msg.text[-1:])
     #print("https://discord.gg/fwxZNJy" in msg.text)
-    if str(env('discord_link')) in msg.text:
+    if f'{env('discord_link')}' in msg.text:
         msgIcon = '<img class="msgIcon" src="/SVG/Discord.svg">'
     elif (hasBadge(msg.user['user_badges'], 'staff')):
         msgIcon = '<img class="msgIcon" src="/SVG/Staff.svg">'
