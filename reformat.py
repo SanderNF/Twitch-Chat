@@ -155,6 +155,14 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
     #print("https://discord.gg/fwxZNJy" in msg.text)
     if f'{env('discord_link')}' in msg.text:
         msgIcon = '<img class="msgIcon" src="/SVG/Discord.svg">'
+    if f'https://www.twitch.tv/{env('channel_name')}/clip/' in msg.text:
+        msgIcon = '<img class="msgIcon" src="/SVG/Clip.svg">'
+    if 'job' in msg.text.lower():
+        msgIcon = '<img class="msgIcon" src="/SVG/application.svg">'
+    if 'j*b' in msg.text.lower():
+        msgIcon = '<img class="msgIcon" src="/SVG/application.svg">'
+    if 'application' in msg.text.lower():
+        msgIcon = '<img class="msgIcon" src="/SVG/application.svg">'
     elif (hasBadge(msg.user['user_badges'], 'staff')):
         msgIcon = '<img class="msgIcon" src="/SVG/Staff.svg">'
     elif (hasBadge(msg.user['user_badges'], 'bot-badge')):
@@ -163,6 +171,8 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
         msgIcon = '<img class="msgIcon" src="/SVG/Artist.svg">'
     elif (msg.user['is_mod']):
         msgIcon = '<img class="msgIcon" src="/SVG/Mod.svg">'
+    elif (msg.text[-2:] == "!?"):
+        msgIcon = '<img class="msgIcon" src="SVG\exclamation-question-mark.svg">'
     elif (msg.text[-1:] == "!"):
         msgIcon = '<img class="msgIcon" src="/SVG/exclamation-mark.svg">'
     elif (msg.text[-1:] == "?"):
