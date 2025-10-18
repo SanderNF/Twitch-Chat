@@ -61,6 +61,18 @@ def hasBadge(badgesList, badgeName):
         return False
     except Exception as e:
         return False
+    
+
+def stripToLeters(string):
+    abc = "abcdefghijklmnopqrstuvwxyzæøå"
+    text = []
+    for i in string.lower():
+        if i in abc:
+            text.append(i)
+        else:
+            text.append(" ")
+    string = ("".join(text))
+    return string
 
 
 def reformatMsg(msg, GlobalBadges, ChannelBadges):
@@ -163,6 +175,14 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
         msgIcon = '<img class="msgIcon" src="/SVG/application.svg">'
     if 'application' in msg.text.lower():
         msgIcon = '<img class="msgIcon" src="/SVG/application.svg">'
+    if ' trans ' in stripToLeters(msg.text):
+        msgIcon = '<img class="msgIcon" src="SVG/Transformer.svg">'
+    if ' transformer' in stripToLeters(msg.text):
+        msgIcon = '<img class="msgIcon" src="SVG/Transformer.svg">'
+    if ' transphobe' in stripToLeters(msg.text):
+        msgIcon = '<img class="msgIcon" src="SVG/Decepticon.svg">'
+    if ' decepticon' in stripToLeters(msg.text):
+        msgIcon = '<img class="msgIcon" src="SVG/Decepticon.svg">'
     elif (hasBadge(msg.user['user_badges'], 'staff')):
         msgIcon = '<img class="msgIcon" src="/SVG/Staff.svg">'
     elif (hasBadge(msg.user['user_badges'], 'bot-badge')):
