@@ -107,7 +107,7 @@ async def run():
     print(user)
 
     # create chat instance
-    chat = await Chat(twitch)
+    chat = await Chat(twitch, no_shared_chat_messages=False)
 
     # register the handlers for the events you want
 
