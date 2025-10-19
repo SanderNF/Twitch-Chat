@@ -167,7 +167,7 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
     #print("https://discord.gg/fwxZNJy" in msg.text)
     if f'{env('discord_link')}' in msg.text:
         msgIcon = '<img class="msgIcon" src="/SVG/Discord.svg">'
-    if f'https://www.twitch.tv/{env('channel_name')}/clip/' in msg.text:
+    if 'https://www.twitch.tv/' in msg.text.lower() and '/clip/' in msg.text.lower():
         msgIcon = '<img class="msgIcon" src="/SVG/Clip.svg">'
     if 'job' in msg.text.lower():
         msgIcon = '<img class="msgIcon" src="/SVG/application.svg">'
