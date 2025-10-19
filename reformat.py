@@ -179,6 +179,10 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
         msgIcon = '<img class="msgIcon" src="SVG/Transformer.svg">'
     if ' transformer' in stripToLeters(msg.text):
         msgIcon = '<img class="msgIcon" src="SVG/Transformer.svg">'
+    if ' optimus prime ' in stripToLeters(msg.text):
+        msgIcon = '<img class="msgIcon" src="SVG/Transformer.svg">'
+    if ' optimus pride ' in stripToLeters(msg.text):
+        msgIcon = '<img class="msgIcon" src="SVG/Transformer.svg">'
     if ' still cis ' in stripToLeters(msg.text):
         msgIcon = '<img class="msgIcon" src="SVG/Transformer.svg">'
     if ' transphobe' in stripToLeters(msg.text):
