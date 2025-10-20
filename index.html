@@ -30,7 +30,7 @@
                                     if (Chat[k].id.substring(Chat[k].id.length - 8) === "-deleted") {
                                         const delMsg = document.getElementById(Chat[k].id.replace("-deleted", ""));
                                         if (delMsg) {
-                                            delMsg.lastChild.innerHTML = "<i>Message deleted</i>";
+                                            delMsg.lastChild.lastChild.lastChild.innerHTML = "<p><i>Message deleted</i></p>";
                                         }
                                     } else {
                                         const msg = document.createElement("div");
