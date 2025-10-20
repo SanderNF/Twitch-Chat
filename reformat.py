@@ -175,25 +175,25 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
         msgIcon = '<img class="msgIcon" src="/SVG/application.svg">'
     elif 'application' in msg.text.lower():
         msgIcon = '<img class="msgIcon" src="/SVG/application.svg">'
-    elif ' trans ' in (stripToLeters(msg.text)+" "):
+    elif ' trans ' in (" "+stripToLeters(msg.text)+" "):
         msgIcon = '<img class="msgIcon" src="SVG/Transformer.svg">'
-    elif ' transformer' in (stripToLeters(msg.text)+" "):
+    elif ' transformer' in (" "+stripToLeters(msg.text)+" "):
         msgIcon = '<img class="msgIcon" src="SVG/Transformer.svg">'
-    elif ' optimus prime ' in (stripToLeters(msg.text)+" "):
+    elif ' optimus prime ' in (" "+stripToLeters(msg.text)+" "):
         msgIcon = '<img class="msgIcon" src="SVG/Transformer.svg">'
-    elif ' optimus pride ' in (stripToLeters(msg.text)+" "):
+    elif ' optimus pride ' in (" "+stripToLeters(msg.text)+" "):
         msgIcon = '<img class="msgIcon" src="SVG/Transformer.svg">'
-    elif ' still cis ' in (stripToLeters(msg.text)+" "):
+    elif ' still cis ' in (" "+stripToLeters(msg.text)+" "):
         msgIcon = '<img class="msgIcon" src="SVG/Transformer.svg">'
-    elif ' transphobe' in (stripToLeters(msg.text)+" "):
+    elif ' transphobe' in (" "+stripToLeters(msg.text)+" "):
         msgIcon = '<img class="msgIcon" src="SVG/Decepticon.svg">'
-    elif ' decepticon' in (stripToLeters(msg.text)+" "):
+    elif ' decepticon' in (" "+stripToLeters(msg.text)+" "):
         msgIcon = '<img class="msgIcon" src="SVG/Decepticon.svg">'
-    elif ' fish ' in (stripToLeters(msg.text)+" "):
+    elif ' fish ' in (" "+stripToLeters(msg.text)+" "):
         msgIcon = '<img class="msgIcon" src="SVG/Fish.svg">'
-    elif ' fishy ' in (stripToLeters(msg.text)+" "):
+    elif ' fishy ' in (" "+stripToLeters(msg.text)+" "):
         msgIcon = '<img class="msgIcon" src="SVG/Fish.svg">'
-    elif ' fisk ' in (stripToLeters(msg.text)+" "):
+    elif ' fisk ' in (" "+stripToLeters(msg.text)+" "):
         msgIcon = '<img class="msgIcon" src="SVG/Fish.svg">'
     elif (hasBadge(msg.user['user_badges'], 'staff')):
         msgIcon = '<img class="msgIcon" src="/SVG/Staff.svg">'
