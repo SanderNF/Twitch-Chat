@@ -72,7 +72,7 @@ async def on_message(msg: ChatMessage):
         }
     print(z.user['user_badges'])
     print(z.user)
-    reformatMsg(z, Global.GlobalBadges, Global.ChannelBadges)
+    await reformatMsg(z, Global.GlobalBadges, Global.ChannelBadges)
     
 
 async def on_message_delete(msg: ChatMessage):

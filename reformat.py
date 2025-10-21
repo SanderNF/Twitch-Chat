@@ -1,6 +1,7 @@
 from os import getenv as env
 from dotenv import load_dotenv
 import json
+from keywordDetection import icon
 
 load_dotenv()
 
@@ -61,22 +62,11 @@ def hasBadge(badgesList, badgeName):
         return False
     except Exception as e:
         return False
-    
-
-def stripToLeters(string):
-    abc = "abcdefghijklmnopqrstuvwxyzæøå"
-    text = []
-    for i in string.lower():
-        if i in abc:
-            text.append(i)
-        else:
-            text.append(" ")
-    string = ("".join(text))
-    return string
 
 
-def reformatMsg(msg, GlobalBadges, ChannelBadges):
+async def reformatMsg(msg, GlobalBadges, ChannelBadges):
     print(msg.text)
+    msgIcon = icon(msg)
     #print(GlobalBadges)
     try:
         Badges = []
@@ -162,53 +152,6 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
     #print(f'Sorted list \n {EmotesList}')
 
 
-    msgIcon = ""
-    print(msg.text[-1:])
-    #print("https://discord.gg/fwxZNJy" in msg.text)
-    if f'{env('discord_link')}' in msg.text:
-        msgIcon = '<img class="msgIcon" src="/SVG/Discord.svg">'
-    elif 'https://www.twitch.tv/' in msg.text.lower() and '/clip/' in msg.text.lower():
-        msgIcon = '<img class="msgIcon" src="/SVG/Clip.svg">'
-    elif 'job' in msg.text.lower():
-        msgIcon = '<img class="msgIcon" src="/SVG/application.svg">'
-    elif 'j*b' in msg.text.lower():
-        msgIcon = '<img class="msgIcon" src="/SVG/application.svg">'
-    elif 'application' in msg.text.lower():
-        msgIcon = '<img class="msgIcon" src="/SVG/application.svg">'
-    elif ' trans ' in (" "+stripToLeters(msg.text)+" "):
-        msgIcon = '<img class="msgIcon" src="SVG/Transformer.svg">'
-    elif ' transformer' in (" "+stripToLeters(msg.text)+" "):
-        msgIcon = '<img class="msgIcon" src="SVG/Transformer.svg">'
-    elif ' optimus prime ' in (" "+stripToLeters(msg.text)+" "):
-        msgIcon = '<img class="msgIcon" src="SVG/Transformer.svg">'
-    elif ' optimus pride ' in (" "+stripToLeters(msg.text)+" "):
-        msgIcon = '<img class="msgIcon" src="SVG/Transformer.svg">'
-    elif ' still cis ' in (" "+stripToLeters(msg.text)+" "):
-        msgIcon = '<img class="msgIcon" src="SVG/Transformer.svg">'
-    elif ' transphobe' in (" "+stripToLeters(msg.text)+" "):
-        msgIcon = '<img class="msgIcon" src="SVG/Decepticon.svg">'
-    elif ' decepticon' in (" "+stripToLeters(msg.text)+" "):
-        msgIcon = '<img class="msgIcon" src="SVG/Decepticon.svg">'
-    elif ' fish ' in (" "+stripToLeters(msg.text)+" "):
-        msgIcon = '<img class="msgIcon" src="SVG/Fish.svg">'
-    elif ' fishy ' in (" "+stripToLeters(msg.text)+" "):
-        msgIcon = '<img class="msgIcon" src="SVG/Fish.svg">'
-    elif ' fisk ' in (" "+stripToLeters(msg.text)+" "):
-        msgIcon = '<img class="msgIcon" src="SVG/Fish.svg">'
-    elif (hasBadge(msg.user['user_badges'], 'staff')):
-        msgIcon = '<img class="msgIcon" src="/SVG/Staff.svg">'
-    elif (hasBadge(msg.user['user_badges'], 'bot-badge')):
-        msgIcon = '<img class="msgIcon" src="/SVG/Bot.svg">'
-    elif (hasBadge(msg.user['user_badges'], 'artist-badge')):
-        msgIcon = '<img class="msgIcon" src="/SVG/Artist.svg">'
-    elif (msg.user['is_mod']):
-        msgIcon = '<img class="msgIcon" src="/SVG/Mod.svg">'
-    elif (msg.text[-2:] == "!?"):
-        msgIcon = '<img class="msgIcon" src="SVG\exclamation-question-mark.svg">'
-    elif (msg.text[-1:] == "!"):
-        msgIcon = '<img class="msgIcon" src="/SVG/exclamation-mark.svg">'
-    elif (msg.text[-1:] == "?"):
-        msgIcon = '<img class="msgIcon" src="/SVG/question-mark.svg">'
 
     out = [
             '<div style="display: flex;">',
@@ -223,7 +166,7 @@ def reformatMsg(msg, GlobalBadges, ChannelBadges):
             '</p>',
             '</div>',
             '</div>',
-            msgIcon,
+            await msgIcon,
             '</div>'
            ]
     #print(out)
