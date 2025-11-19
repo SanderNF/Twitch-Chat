@@ -232,6 +232,7 @@ async def reformatMsg(msg, GlobalBadges, ChannelBadges):
                     print(i[k+iconPos[1]])
             print(iconName)
             out[iIndex] = re.sub(f':material:{iconName}:', f'<span class="material-symbols-outlined">{iconName}</span>', i)
+            i = out[iIndex]
         #for j in materialIcons:
         #    print(j)
     with open('Chat.json', 'r',  encoding='utf-8') as f:
