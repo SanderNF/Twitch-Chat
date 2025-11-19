@@ -119,3 +119,8 @@ img {
 .hide {
     opacity: 0% !important;
 }
+.material-symbols-outlined {
+    font-size: 40px;
+    vertical-align: middle;
+    translate: 0 -3px;
+}

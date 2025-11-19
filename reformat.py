@@ -1,6 +1,6 @@
 from os import getenv as env
 from dotenv import load_dotenv
-import json
+import json, re
 from keywordDetection import icon
 
 load_dotenv()
@@ -211,6 +211,29 @@ async def reformatMsg(msg, GlobalBadges, ChannelBadges):
     out.append("".join(end))
     #print(f'<code style="color:{msg.user['user_color']};">{msg.user['user_display_name']}</code>:')
     #print(" ".join(out))
+    for iIndex in range(len(out)):
+        i = out[iIndex]
+        print(i)
+        materialIcons = re.findall(':material:', i)
+        print(materialIcons)
+        for j in materialIcons:
+            iconMatch = re.search(j, i)
+            if iconMatch == None:
+                break
+            print(iconMatch)
+            iconPos = iconMatch.span()
+            print(iconPos)
+            iconName = ''
+            for k in range(len(i)-iconPos[1]):
+                if i[k+iconPos[1]] == ':':
+                    break
+                else:
+                    iconName += i[k+iconPos[1]]
+                    print(i[k+iconPos[1]])
+            print(iconName)
+            out[iIndex] = re.sub(f':material:{iconName}:', f'<span class="material-symbols-outlined">{iconName}</span>', i)
+        #for j in materialIcons:
+        #    print(j)
     with open('Chat.json', 'r',  encoding='utf-8') as f:
         b = json.load(f)
     #print(b)
