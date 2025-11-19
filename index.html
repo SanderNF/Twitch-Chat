@@ -18,45 +18,7 @@
                             return Promise.reject(new Error('HTTP status ' + res.status));
                         })
                         .then(data => {
-                            const Chat = data;
-                            const oldChat = document.getElementById("Chat");
-                            const pageMessages = document.querySelectorAll(".message");
-                            //console.log(`old chat: ${oldChat.innerHTML}`); // Log the old chat
-                            //console.log(`new chat: ${Chat}`); // Log the new chat
-
-                            
-                            if (Chat != oldChat.innerHTML){
-                                for (let k = 0; k < Chat.length; k++) {
-                                    if (Chat[k].id.substring(Chat[k].id.length - 8) === "-deleted") {
-                                        const delMsg = document.getElementById(Chat[k].id.replace("-deleted", ""));
-                                        if (delMsg) {
-                                            delMsg.lastChild.lastChild.lastChild.innerHTML = "<p><i>Message deleted</i></p>";
-                                        }
-                                    } else {
-                                        const msg = document.createElement("div");
-                                        msg.classList.add("message");
-                                        msg.innerHTML = Chat[k].msg;
-                                        msg.id = `${Chat[k].id}`;
-                                        //msg.style.marginBottom = "-50px";
-                                        //msg.style.transition = "margin-bottom 0.5s ease-out";
-                                        //console.log(`adding chat: ${Chat[k]}`); // Log the new chat
-                                        if (document.getElementById(msg.id)) {
-                                            //console.log(`skipping duplicate id: ${msg.id}`);
-                                            continue;
-                                        }
-                                        document.getElementById("Chat").appendChild(msg);
-                                        setTimeout(() => {
-                                            msg.classList.add("mover");
-                                        }, 20); // Slight delay to ensure the transition occurs
-                                    }
-                                }
-                            }
-                            setTimeout(() => {
-                                for (let i = 0; i < (document.querySelectorAll(".message").length - 6); i++) {
-                                    //console.log(`removing old message: ${document.querySelectorAll(".message")[i].id}`);
-                                    document.querySelectorAll(".message")[i].remove();
-                                }
-                            }, 100);
+                            drawChatbox(data);
                         })
                         .catch(error => console.error(error));
                 }
@@ -64,8 +26,72 @@
                     console.error(error);
                 }
             }
+        async function offsetChat() {
+            const chatbox = document.getElementById('Chat');
+            setTimeout(() => {
+                let chatList = []
+                for (let msg of chatbox.children) {
+                    time = msg.classList[2].split("§")[1];
+                    chatList.push({Element: msg, Time: parseInt(time)});
+                }
+                chatList.sort((a, b) => b.Time - a.Time);
+                let offset = 40;
+                for (let msg of chatList) {
+                    Height = msg.Element.offsetHeight;
+                    //offset += Height;
+                    msg.Element.style.bottom = `${offset}px`;
+                    offset += 10 + Height; // Additional spacing between messages
+                }
+                //console.log(chatList);                  
+            }, 100);
+        }
+        function drawChatbox(jsonData) {
+            const chatbox = document.getElementById('Chat');
+            let chatIds = []
+            for (let msg of chatbox.children) {
+                chatIds.push(msg.id);
+            }
+            for (let id of chatIds) {
+                if (!jsonData.some(message => message.id === id)) {
+                    const msgDiv = document.getElementById(id);
+                    msgDiv.classList.add('hide');
+                    setTimeout(() => {
+                        msgDiv.remove();
+                        offsetChat();
+                    }, 1000); // Make this duration more than the CSS transition duration
+                }
+            }
+            jsonData.forEach(message => {
+                if (message.id.substring(message.id.length - 8) === "-deleted") {
+                    const delMsg = document.getElementById(message.id.replace("-deleted", ""));
+                    if (delMsg) {
+                        delMsg.lastChild.lastChild.lastChild.innerHTML = "<p><i>Message deleted</i></p>";
+                    }
+                } else {
+                    if (chatIds.includes(message.id)) {
+                        
+                    } else {
+                        const msgDiv = document.createElement('div');
+                        msgDiv.classList.add('message');
+                        msgDiv.innerHTML = message.msg; // Assuming message.msg contains the HTML content
+                        msgDiv.classList.add('startPos');
+                        msgDiv.id = message.id;
+                        chatbox.appendChild(msgDiv);
+                        divHeight = msgDiv.offsetHeight;
+                        console.log(divHeight);
+                        //msgDiv.style.bottom = `${divHeight}px`;
+                        msgDiv.classList.add(`Time:§${Date.now()}`)
+                        console.log(`${Date.now()}`)
+                        offsetChat();
+                    }}
+            });
+            
+        }
     </script>
     <link rel="stylesheet" href="style.css">
+    <style>
+        
+    </style>
 </head>
 <body>
     <div id="Chat"></div>
