@@ -38,7 +38,8 @@ async def icon(msg):
     #print("https://discord.gg/fwxZNJy" in msg.text)
     if re.search(f'{env('discord_link')}', msg.text):
         msgIcon += '<img class="msgIcon" src="/SVG/Discord.svg">'
-    if re.search('https://www.twitch.tv/*/clip/', msg.text.lower()):
+    print(re.search('www[.]twitch[.]tv.*.clip', msg.text.lower()), "re.search")
+    if re.search('www[.]twitch[.]tv.*.clip', msg.text.lower()):
         msgIcon += '<img class="msgIcon" src="/SVG/Clip.svg">'
     if re.search(' job ', message):
         msgIcon += '<img class="msgIcon" src="/SVG/application.svg">'
