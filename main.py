@@ -123,7 +123,7 @@ async def run():
     # listen to channel subscriptions
     chat.register_event(ChatEvent.CHAT_CLEARED, on_chat_cleared)
     # listen to channel subscriptions
-    chat.register_event(ChatEvent.SUB, on_sub)
+    # chat.register_event(ChatEvent.SUB, on_sub)
     # there are more events, you can view them all in this documentation
 
     

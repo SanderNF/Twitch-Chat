@@ -1,6 +1,6 @@
 from os import getenv as env
 from dotenv import load_dotenv
-import json, re
+import json, re, traceback
 from keywordDetection import icon
 
 load_dotenv()
@@ -87,7 +87,7 @@ async def reformatMsg(msg, GlobalBadges, ChannelBadges):
             for j in range(len(PreBadges)):
                 #print(j)
                 jj = PreBadges[j][0]
-                jjj = int(PreBadges[j][1])
+                jjj = (PreBadges[j][1])
                 #print(jj)
                 #print((i.set_id == jj))
                 if (i.set_id == jj):
@@ -96,7 +96,7 @@ async def reformatMsg(msg, GlobalBadges, ChannelBadges):
                         kk = i.versions[k]
                         try:
                             #print(i.versions[jjj])
-                            if int(kk.id) == (jjj):
+                            if (kk.id) == (jjj):
                                 Badges[j] = kk
                                 break
                         except Exception as e:
@@ -108,7 +108,7 @@ async def reformatMsg(msg, GlobalBadges, ChannelBadges):
             for j in range(len(PreBadges)):
                 #print(j)
                 jj = PreBadges[j][0]
-                jjj = int(PreBadges[j][1])
+                jjj = (PreBadges[j][1])
                 #print(jj)
                 #print((i.set_id == jj))
                 if (i.set_id == jj):
@@ -118,7 +118,7 @@ async def reformatMsg(msg, GlobalBadges, ChannelBadges):
                         kk = i.versions[k]
                         try:
                             #print(kk.id, jjj)
-                            if int(kk.id) == (jjj):
+                            if (kk.id) == (jjj):
                                 Badges[j] = kk
                                 break
                         except:
@@ -128,7 +128,7 @@ async def reformatMsg(msg, GlobalBadges, ChannelBadges):
                 #print(GlobalBadges[0][i])
         
     except Exception as e:
-        print(f'get badges failed: {e}')
+        print(f'get badges failed: {traceback.format_exc()}')
     #print(Badges)
     EmotesList = []
     try:
