@@ -71,7 +71,7 @@ async def on_message(msg: ChatMessage):
         'user_name':msg.user.name
         }
     print(z.user['user_badges'])
-    print(z.user)
+    #print(z.user)
     await reformatMsg(z, Global.GlobalBadges, Global.ChannelBadges)
     
 

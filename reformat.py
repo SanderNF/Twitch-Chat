@@ -128,7 +128,7 @@ async def reformatMsg(msg, GlobalBadges, ChannelBadges):
                 #print(GlobalBadges[0][i])
         
     except Exception as e:
-        print(f'get badges failed: {traceback.format_exc()}')
+        print(f'\x1b[31mget badges failed: {traceback.format_exc()}\x1b[39m')
     #print(Badges)
     EmotesList = []
     try:
@@ -213,24 +213,24 @@ async def reformatMsg(msg, GlobalBadges, ChannelBadges):
     #print(" ".join(out))
     for iIndex in range(len(out)):
         i = out[iIndex]
-        print(i)
+        #print(i)
         materialIcons = re.findall(':material:', i)
-        print(materialIcons)
+        #print(materialIcons)
         for j in materialIcons:
             iconMatch = re.search(j, i)
             if iconMatch == None:
                 break
-            print(iconMatch)
+            #print(iconMatch)
             iconPos = iconMatch.span()
-            print(iconPos)
+            #print(iconPos)
             iconName = ''
             for k in range(len(i)-iconPos[1]):
                 if i[k+iconPos[1]] == ':':
                     break
                 else:
                     iconName += i[k+iconPos[1]]
-                    print(i[k+iconPos[1]])
-            print(iconName)
+                    #print(i[k+iconPos[1]])
+            #print(iconName)
             out[iIndex] = re.sub(f':material:{iconName}:', f'<span class="material-symbols-outlined">{iconName}</span>', i)
             i = out[iIndex]
         #for j in materialIcons:

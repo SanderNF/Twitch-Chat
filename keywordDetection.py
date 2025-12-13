@@ -10,10 +10,10 @@ load_dotenv()
 def hasBadge(badgesList, badgeName):
     try:
         badge = badgesList[badgeName]
-        print(badge)
+        #print(badge)
         return (int(badge) > 0.5)
     except TypeError:
-        print('hasBadge type error (debuging only)')
+        #print('hasBadge type error (debuging only)')
         return False
     except Exception as e:
         return False
@@ -34,7 +34,7 @@ def stripToLeters(string):
 async def icon(msg):
     msgIcon = ""
     message = (" "+stripToLeters(msg.text)+" ")
-    print(msg.text[-1:])
+    #print(msg.text[-1:])
     #print("https://discord.gg/fwxZNJy" in msg.text)
     if re.search(f'{env('discord_link')}', msg.text):
         msgIcon += '<img class="msgIcon" src="/SVG/Discord.svg">'
