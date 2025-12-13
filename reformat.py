@@ -127,6 +127,8 @@ async def reformatMsg(msg, GlobalBadges, ChannelBadges):
                     #print(Badges)
                 #print(GlobalBadges[0][i])
         
+    except TypeError:
+        print("bagde: 'NoneType'")
     except Exception as e:
         print(f'\x1b[31mget badges failed: {traceback.format_exc()}\x1b[39m')
     #print(Badges)
