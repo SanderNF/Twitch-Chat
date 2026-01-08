@@ -1,3 +1,8 @@
+set /p "Input1=Twitch client id: "
+set /p "Input2=Twitch client secret: "
+set /p "Input3=your channel name: "
+set /p "Input4=max number big emotes: "
+set /p "Input5=Your discord invite link: "
 
 rem Batch equivalent of PowerShell's $PSScriptRoot
 set "SCRIPT_DIR=%~dp0"
@@ -21,11 +26,11 @@ rem Install requirements
 %SCRIPT_DIR%Scripts\pip.exe install -r %SCRIPT_DIR%\requirements.txt
 
 
-rem Create .env with placeholders (escape < and >)
+rem Create .env 
 (
-    echo client_id=^<your-app-id^>
-    echo client_secret=^<your-app-secret^>
-    echo channel_name=^<your-channel-name^>
-    echo max_large_emotes=^<any-integer^>
-    echo discord_link=^<discord_invite_link^>
+    echo client_id=%Input1%
+    echo client_secret=%Input2%
+    echo channel_name=%Input3%
+    echo max_large_emotes=%Input4%
+    echo discord_link=%Input5%
 ) > %SCRIPT_DIR%.env
