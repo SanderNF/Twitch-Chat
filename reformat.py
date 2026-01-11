@@ -47,7 +47,7 @@ def formatBadges(data):
     for i in data:
         j = i
         #print(j)
-        out.append(f'<img alt="badge" aria-label="badge" class="chat-badge" src="{j.image_url_4x}" tabindex="0" srcset="{j.image_url_1x} 1x, {j.image_url_2x} 2x, {j.image_url_4x} 4x">')
+        out.append(f'<img alt="badge" aria-label="badge" class="chat-badge" src="{j.image_url_4x}">')
     return "".join(out)
 
 
@@ -186,7 +186,7 @@ async def reformatMsg(msg, GlobalBadges, ChannelBadges):
                     tempMsg = "".join(tempMsg)
                     out.append(EscapeText(tempMsg))
                     a = EmotesList[EmoteIndex][2]
-                    EmoteElement = str(f'<img alt="Emote" class="chat-image chat-line__message--emote" src="https://static-cdn.jtvnw.net/emoticons/v2/{a}/default/dark/1.0" srcset="https://static-cdn.jtvnw.net/emoticons/v2/{a}/default/dark/4.0 1x,https://static-cdn.jtvnw.net/emoticons/v2/{a}/default/dark/2.0 2x,https://static-cdn.jtvnw.net/emoticons/v2/{a}/default/dark/4.0 4x">')
+                    EmoteElement = str(f'<img alt="Emote" class="chat-image chat-line__message--emote" src="https://static-cdn.jtvnw.net/emoticons/v2/{a}/default/dark/4.0">')
                     #print(EmoteElement)
                     out.append(EmoteElement)
                     tempMsg = []
