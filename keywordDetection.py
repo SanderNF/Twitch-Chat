@@ -73,7 +73,10 @@ async def icon(msg):
     if (hasBadge(msg.user['user_badges'], 'artist-badge')):
         msgIcon += '<img class="msgIcon" src="/SVG/Artist.svg">'
     if (msg.user['is_mod']):
-        msgIcon += '<img class="msgIcon" src="/SVG/Mod.svg">'
+        if (hasBadge(msg.user['user_badges'], 'lead_moderator')):
+            msgIcon += '<img class="msgIcon" src="/SVG/Head_mod.svg">'
+        else:
+            msgIcon += '<img class="msgIcon" src="/SVG/Mod.svg">'
     if (msg.text[-2:] == "!?"):
         msgIcon += '<img class="msgIcon" src="SVG/exclamation-question-mark.svg">'
     elif (msg.text[-1:] == "!"):
