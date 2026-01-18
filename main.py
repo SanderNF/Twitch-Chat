@@ -14,18 +14,30 @@ from twitchAPI.oauth import UserAuthenticator
 from twitchAPI.type import AuthScope, ChatEvent
 from twitchAPI.chat import Chat, EventData, ChatMessage, ChatSub, ChatCommand
 from twitchAPI.helper import first
+from twitchAPI.eventsub.websocket import EventSubWebsocket
+from twitchAPI.object.eventsub import ChannelPointsCustomRewardRedemptionAddEvent
+from obs_squish import trigger_squish
+
 import asyncio
 
 
 load_dotenv()
 APP_ID = env('client_id')
 APP_SECRET = env('client_secret')
-USER_SCOPE = [AuthScope.CHAT_READ, AuthScope.CHAT_EDIT]
+USER_SCOPE = [AuthScope.CHAT_READ, AuthScope.CHAT_EDIT, AuthScope.CHANNEL_READ_REDEMPTIONS]
 TARGET_CHANNEL = env('channel_name')
 #print(APP_ID)
 
 
 
+REWARD_TITLE = "SQUISH THE CATGIRL INTO 4:3"  # must match reward name EXACTLY
+
+
+async def on_channel_point_redeem(event: ChannelPointsCustomRewardRedemptionAddEvent):
+    print(f"redemed: {event.event.reward.title}")
+    if event.event.reward.title == REWARD_TITLE:
+        print("Channel point redeemed: triggering squish")
+        trigger_squish()
 
 
 
@@ -109,6 +121,18 @@ async def run():
     user = await first(twitch.get_users(logins=TARGET_CHANNEL))
     print(user)
 
+    eventsub = EventSubWebsocket(twitch)
+    try:
+        eventsub.start()
+
+        await eventsub.listen_channel_points_custom_reward_redemption_add(
+            broadcaster_user_id=user.id,
+            callback=on_channel_point_redeem
+        )
+    except Exception as e:
+        print("failed to add channel points redemption:")
+        print(e)
+
     # create chat instance
     chat = await Chat(twitch, no_shared_chat_messages=False)
 
@@ -143,6 +167,7 @@ async def run():
     finally:
         # now we can close the chat bot and the twitch api client
         chat.stop()
+        eventsub.stop()
         await twitch.close()
 
 
