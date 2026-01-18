@@ -2,3 +2,4 @@ twitchAPI
 python-dotenv
 aiohttp
 websockets
+obsws-python
