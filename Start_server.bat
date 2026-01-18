@@ -13,4 +13,7 @@ timeout /T 5 /NOBREAK >nul
 
 start "" "http://127.0.0.1:8000/"
 
+rem update requirements
+%SCRIPT_DIR%Scripts\pip.exe install -r %SCRIPT_DIR%\requirements.txt
+
 popd
