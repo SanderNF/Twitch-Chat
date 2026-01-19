@@ -1,4 +1,3 @@
-﻿
 pushd "%~dp0"
 set "SCRIPT_DIR=%~dp0"
 echo Script folder: %~dp0
