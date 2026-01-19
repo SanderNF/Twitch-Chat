@@ -22,7 +22,7 @@ pip install hapless
 (
     echo client_id=$input1
     echo client_secret=$input2
-    echo channel_name=$Input3
-    echo max_large_emotes=$Input4
-    echo discord_link=$Input5
+    echo channel_name=$input3
+    echo max_large_emotes=$input4
+    echo discord_link=$input5
 ) > .env

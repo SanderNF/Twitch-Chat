@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from random import randrange
 from reformat import reformatMsg
 from deleteMsg import deleteById, deleteByUser
+from GlobalStore import Global
 
 
 
@@ -16,9 +17,9 @@ from twitchAPI.chat import Chat, EventData, ChatMessage, ChatSub, ChatCommand
 from twitchAPI.helper import first
 from twitchAPI.eventsub.websocket import EventSubWebsocket
 from twitchAPI.object.eventsub import ChannelPointsCustomRewardRedemptionAddEvent
-from obs_squish import trigger_squish
+from obs_squish import trigger_squish, half_height_temporarily
 
-import asyncio
+import asyncio, threading
 
 
 load_dotenv()
@@ -37,7 +38,7 @@ async def on_channel_point_redeem(event: ChannelPointsCustomRewardRedemptionAddE
     print(f"redemed: {event.event.reward.title}")
     if event.event.reward.title == REWARD_TITLE:
         print("Channel point redeemed: triggering squish")
-        trigger_squish()
+        half_height_temporarily()
 
 
 
@@ -50,9 +51,7 @@ async def on_ready(ready_event: EventData):
     # you can do other bot initialization things in here
 
     
-class Global:
-    GlobalBadges = []
-    ChannelBadges = []
+
 
 
 # this will be called whenever a message in a channel was send by either the bot OR another user
@@ -108,7 +107,28 @@ async def on_sub(sub: ChatSub):
           f'  Type: {sub.sub_plan}\\n'
           f'  Message: {sub.sub_message}')
 
+async def EventSubRedems():
+    print("starting eventsub redems")
+    eventsub = Global.eventsub
+    user = Global.user
+    try:
+        eventsub.start()
 
+        await eventsub.listen_channel_points_custom_reward_redemption_add(
+            broadcaster_user_id=user.id,
+            callback=on_channel_point_redeem
+        )
+        print("eventsub redems: runing")
+    except Exception as e:
+        print("failed to add channel points redemption:")
+        print(e)
+
+async def startEventSubRedems():
+    threading.Thread(
+        target=asyncio.run,
+        daemon=True,
+        args=[EventSubRedems()]
+    ).start()
 
 
 # this is where we set up the bot
@@ -121,17 +141,9 @@ async def run():
     user = await first(twitch.get_users(logins=TARGET_CHANNEL))
     print(user)
 
-    eventsub = EventSubWebsocket(twitch)
-    try:
-        eventsub.start()
 
-        await eventsub.listen_channel_points_custom_reward_redemption_add(
-            broadcaster_user_id=user.id,
-            callback=on_channel_point_redeem
-        )
-    except Exception as e:
-        print("failed to add channel points redemption:")
-        print(e)
+    eventsub = EventSubWebsocket(twitch)
+    
 
     # create chat instance
     chat = await Chat(twitch, no_shared_chat_messages=False)
@@ -155,9 +167,13 @@ async def run():
 
     # we are done with our setup, lets start this bot up!
     chat.start()
+
+    await startEventSubRedems()
     
 
     Global.twitch = twitch
+    Global.user = user
+    Global.eventsub = eventsub
     Global.GlobalBadges.append(await Twitch.get_global_chat_badges(twitch)) 
     Global.ChannelBadges.append(await Twitch.get_chat_badges(twitch,user.id))
 
