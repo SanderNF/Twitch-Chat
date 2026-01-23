@@ -60,12 +60,12 @@ async def icon(msg):
         msgIcon += '<img class="msgIcon" src="SVG/Fish.svg">'
     elif re.search(' fisk*', message):
         msgIcon += '<img class="msgIcon" src="SVG/Fish.svg">'
-    if re.search(':3', msg.text.lower()):
-        msgIcon += '<img class="msgIcon Colon3" src="SVG/Colon3_v2.svg">'
     if re.search('4', msg.text.lower()):
         msgIcon += '<img class="msgIcon Four" src="SVG/Four.svg">'
     if re.search('four', msg.text.lower()):
         msgIcon += '<img class="msgIcon Four" src="SVG/Four.svg">'
+    if re.search(':3', msg.text.lower()):
+        msgIcon += '<img class="msgIcon Colon3" src="SVG/Colon3_v2.svg">'
     if (hasBadge(msg.user['user_badges'], 'staff')):
         msgIcon += '<img class="msgIcon" src="/SVG/Staff.svg">'
     if (hasBadge(msg.user['user_badges'], 'bot-badge')):
