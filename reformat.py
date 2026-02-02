@@ -2,6 +2,7 @@ from os import getenv as env
 from dotenv import load_dotenv
 import json, re, traceback
 from keywordDetection import icon
+from check_version import runVersionCheck
 
 load_dotenv()
 
@@ -253,6 +254,9 @@ async def reformatMsg(msg, GlobalBadges, ChannelBadges):
         with open('Chat.json', 'w', encoding='utf-8') as f:
             json.dump([f'<p> JSON save failed with error: {e} reseting chat </p>'], f, ensure_ascii=False, indent=4)
     #print(b)
+
+    if msg.text == "chatbox vesion" or msg.text == "chatbox -v":
+        runVersionCheck()
 
 
 #reformatMsg(test, [])
