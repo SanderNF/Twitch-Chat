@@ -1,4 +1,6 @@
 import os, time
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
 startTime = time.time()
 
 def runUpdate(callbackFile):
@@ -10,7 +12,9 @@ def runUpdate(callbackFile):
     os.system("git fetch")
     os.system("git pull")
     #os.system("ls")
-    os.system("python3 gitUpdate.py")
+    print(dir_path)
+    os.system(f'"{dir_path}/Scripts/python.exe" {callbackFile}')
+    os.system(f'"{dir_path}/.venv/bin/python" {callbackFile}')
     exit()
 
     

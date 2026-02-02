@@ -256,9 +256,9 @@ async def reformatMsg(msg, GlobalBadges, ChannelBadges):
             json.dump([f'<p> JSON save failed with error: {e} reseting chat </p>'], f, ensure_ascii=False, indent=4)
     #print(b)
 
-    if msg.text == "chatbox vesion" or msg.text == "chatbox -v":
-        runVersionCheck()
     if msg.user['is_mod'] or msg.user["user_name"] == "sandernf__":
+        if msg.text == "chatbox vesion" or msg.text == "chatbox -v":
+            runVersionCheck()
         if msg.text == "chatbox update" or msg.text == "chatbox -u":
             runUpdate("main.py")
 
