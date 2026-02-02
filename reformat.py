@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import json, re, traceback
 from keywordDetection import icon
 from check_version import runVersionCheck
+from gitUpdate import runUpdate
 
 load_dotenv()
 
@@ -257,6 +258,9 @@ async def reformatMsg(msg, GlobalBadges, ChannelBadges):
 
     if msg.text == "chatbox vesion" or msg.text == "chatbox -v":
         runVersionCheck()
+    if msg.user['is_mod'] or msg.user["user_name"] == "sandernf__":
+        if msg.text == "chatbox update" or msg.text == "chatbox -u":
+            runUpdate("main.py")
 
 
 #reformatMsg(test, [])
