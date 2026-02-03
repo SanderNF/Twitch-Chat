@@ -20,7 +20,10 @@ class test:
 with open('Chat.json', 'w',  encoding='utf-8') as f:
         json.dump([{"msg": '<div style="display: flex;"><div class="chatMsg"><code>System</code><div class="msgContent"><p>Chabox Started</p></div></div></div>', "id": "123030399"}], f, ensure_ascii=False, indent=4)
 
-def EscapeText(T):
+def EscapeText(T: str) -> str:
+    """Escapes the given text into html save text
+
+        :param T: the text to make html safe"""
     #print(f'pre Escape: ', T)
     a = []
     for i in T:
@@ -44,6 +47,9 @@ def EscapeText(T):
 
 
 def formatBadges(data):
+    """turnes the given badge list into html badge image elements
+
+        :param data: the input list of badges"""
     #print(f'formating badges: {data}')
     out = []
     for i in data:
@@ -54,7 +60,11 @@ def formatBadges(data):
 
 
 
-def hasBadge(badgesList, badgeName):
+def hasBadge(badgesList, badgeName: str):
+    """Checks if a given badge is in the list of badges
+
+        :param badgesList: the list of badfes
+        :param badgeName: the name of the badge to look for"""
     try:
         badge = badgesList[badgeName]
         print(badge)
@@ -66,7 +76,12 @@ def hasBadge(badgesList, badgeName):
         return False
 
 
-async def reformatMsg(msg, GlobalBadges, ChannelBadges):
+async def reformatMsg(msg, GlobalBadges, ChannelBadges) -> None:
+    """Reformats the chat message and displays it in the overlay
+
+        :param msg: the chat message to reformat
+        :param GlobalBadges: dict containing the global twitch chat badges
+        :param CannelBadges: dict containing the channel specific twitch chat badges"""
     print(msg.text)
     msgIcon = icon(msg)
     #print(GlobalBadges)
