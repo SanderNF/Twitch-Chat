@@ -2,6 +2,7 @@ import json
 
 
 def runVersionCheck():
+    """run the hack to check the curent commit version"""
     gitVersion = version()
     with open('Chat.json', 'r',  encoding='utf-8') as f:
         b = json.load(f)
@@ -21,6 +22,7 @@ def runVersionCheck():
 
 
 def version():
+    """the hack function for checking the commit version"""
     try:
         with open('.git/FETCH_HEAD', 'r',  encoding='utf-8') as f:
             return str(f.read(7))

@@ -7,7 +7,11 @@ load_dotenv()
 
 
 
-def hasBadge(badgesList, badgeName):
+def hasBadge(badgesList, badgeName: str):
+    """Checks if a given badge is in the list of badges
+
+        :param badgesList: the list of badfes
+        :param badgeName: the name of the badge to look for"""
     try:
         badge = badgesList[badgeName]
         #print(badge)
@@ -19,7 +23,10 @@ def hasBadge(badgesList, badgeName):
         return False
     
 
-def stripToLeters(string):
+def stripToLeters(string: str):
+    """removes all non norwegian leters from the string
+    
+    :param string: the sring to srtrip leters from"""
     abc = "abcdefghijklmnopqrstuvwxyzæøå"
     text = []
     for i in string.lower():
@@ -31,7 +38,10 @@ def stripToLeters(string):
     return string
 
 
-async def icon(msg):
+async def icon(msg) -> str:
+    """returns html code for showing svg images based on the msg (big elif/if statement)
+
+        :param msg: the message to get icons for"""
     msgIcon = ""
     message = (" "+stripToLeters(msg.text)+" ")
     #print(msg.text[-1:])

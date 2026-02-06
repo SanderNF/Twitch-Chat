@@ -4,6 +4,9 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 startTime = time.time()
 
 def runUpdate(callbackFile):
+    """Starts the proses of Git pulling and restarting the python file
+
+        :param callbackFile: The Python file you wish to run after the github update"""
     if time.time()-startTime < 5:
         print("Update called too soon")
         return

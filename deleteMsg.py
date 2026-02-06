@@ -1,7 +1,10 @@
 import json
 
 
-def deleteById(id):
+def deleteById(id: str):
+    """deletes a message by the given id
+    
+    :param id: the message id to delete"""
     with open('Chat.json', 'r',  encoding='utf-8') as f:
         ChatJson = json.load(f)
     for i in range(len(ChatJson)):
@@ -20,7 +23,10 @@ def deleteById(id):
             json.dump([{"msg":f'<p> Delete message failed with error: {e} reseting chat </p>',"id":"error"}], f, ensure_ascii=False, indent=4)
 
 
-def deleteByUser(username):
+def deleteByUser(username: str):
+    """deletes a message by the given user
+    
+    :param id: the user who's message to delete"""
     with open('Chat.json', 'r',  encoding='utf-8') as f:
         ChatJson = json.load(f)
     for i in range(len(ChatJson)):
