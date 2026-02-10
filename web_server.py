@@ -5,6 +5,8 @@ import time
 import os
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
+from LoadSVG import load_svg
+
 """
 web_server.py
 
@@ -84,6 +86,8 @@ class JSONRequestHandler(BaseHTTPRequestHandler):
             self._serve_static("style.css")
         elif path == "/Chat.json":
             self._serve_data()
+        elif path.endswith(".svg"):
+            self._serve_svg(path.lstrip("/"))
         else:
             # try to serve from current dir for any other file
             local = path.lstrip("/")
@@ -147,6 +151,22 @@ class JSONRequestHandler(BaseHTTPRequestHandler):
             self.send_header("Content-Type", "text/plain; charset=utf-8")
             self.end_headers()
             self.wfile.write(("Server error: " + str(e)).encode("utf-8"))
+
+    def _serve_svg(self, filename):
+        try:
+            data = load_svg(filename, background_color="#fff").encode("utf-8")
+            print(f"Loaded SVG content: {data[:500]}...")  # Print the first 100 characters for debugging
+            ctype = "image/svg+xml; charset=utf-8"
+            self.send_response(200)
+            self.send_header("Content-Type", ctype)
+            self.send_header("Content-Length", str(len(data)))
+            self.end_headers()
+            self.wfile.write(data)
+        except Exception:
+            self.send_response(500)
+            self.send_header("Content-Type", "text/plain; charset=utf-8")
+            self.end_headers()
+            self.wfile.write(b"Internal Server Error")
 
     def _serve_data(self):
         with CACHE_LOCK:
