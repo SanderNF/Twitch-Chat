@@ -17,6 +17,7 @@ runs:
       shell: bash
       run: |
         echo "Twitch_ID=${{ inputs.Twitch_ID }}" >> $GITHUB_ENV
+        echo "Twitch_ID=${{ inputs.Twitch_ID }}"
         echo "Twitch_Secret=${{ inputs.Twitch_Secret }}" >> $GITHUB_ENV
     - name: run test
       shell: bash
