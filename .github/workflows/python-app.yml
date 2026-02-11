@@ -23,6 +23,8 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.14"
+    - name: ls
+      run: ls
     - name: run twitch-chat
       uses: SanderNF/Twitch-Chat/actions/run-test@github-actions
       with:
