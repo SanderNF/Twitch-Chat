@@ -48,6 +48,7 @@ done
 export ENV_Channel_Name="sandernf__"
 export ENV_Max_Large_Emotes="5"
 export ENV_Discord_Link="no"
-
-sh ./../../Quick_setup.sh
-./../../.venv/bin/python ./../../main.py 
+cd ..
+cd ..
+sh Quick_setup.sh
+.venv/bin/python main.py 
