@@ -26,4 +26,4 @@ runs:
         echo "Twitch client id: $ENV_Twitch_ID"
         chmod +x ./github-actions/run-test/run-test.sh
         cd ./github-actions/run-test/
-        sh run-test.sh
+        bash run-test.sh
