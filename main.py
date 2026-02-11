@@ -98,7 +98,8 @@ async def on_sub(sub: ChatSub):
           f'  Message: {sub.sub_message}')
 
 
-
+if cli_args[1] == "gha":
+    print(APP_ID)
 
 # this is where we set up the bot
 async def run():
