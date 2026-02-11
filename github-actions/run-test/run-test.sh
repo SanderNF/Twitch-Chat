@@ -51,4 +51,4 @@ export ENV_Discord_Link="no"
 cd ..
 cd ..
 sh Quick_setup.sh
-.venv/bin/python main.py 
+.venv/bin/python main.py gha
