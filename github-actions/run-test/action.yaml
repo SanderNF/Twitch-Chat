@@ -16,15 +16,12 @@ runs:
       if: env.ADHOC_ALLOWED == 'true'
       shell: bash
       run: |
-        export Twitch_ID="${{ inputs.Twitch_ID }}"
-        echo "Twitch_ID=${{ inputs.Twitch_ID }}"
-        export Twitch_Secret="${{ inputs.Twitch_Secret }}"
+        export ENV_Twitch_ID="${{ inputs.Twitch_ID }}"
+        export ENV_Twitch_Secret="${{ inputs.Twitch_Secret }}"
+        echo "Twitch client id: $ENV_Twitch_ID"
     - name: run test
       shell: bash
       run: |
-        export Twitch_ID="${{ inputs.Twitch_ID }}"
-        export Twitch_Secret="${{ inputs.Twitch_Secret }}"
-        echo "Twitch client id: $Twitch_ID"
         chmod +x ./github-actions/run-test/run-test.sh
         cd ./github-actions/run-test/
         sh run-test.sh
