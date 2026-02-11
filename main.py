@@ -148,15 +148,17 @@ async def run():
 
     if gha:
         print("Running in GitHub actions, skipping input wait")
-        return
-
-    # lets run till we press enter in the console
-    try:
-        input('press ENTER to stop \n')
-    finally:
         # now we can close the chat bot and the twitch api client
         chat.stop()
         await twitch.close()
+    else:
+        # lets run till we press enter in the console
+        try:
+            input('press ENTER to stop \n')
+        finally:
+            # now we can close the chat bot and the twitch api client
+            chat.stop()
+            await twitch.close()
 
 
 
