@@ -1,5 +1,6 @@
 from os import getenv as env
 import os
+from sys import argv as cli_args
 from dotenv import load_dotenv
 from random import randrange
 from reformat import reformatMsg
@@ -97,14 +98,22 @@ async def on_sub(sub: ChatSub):
           f'  Message: {sub.sub_message}')
 
 
-
+if cli_args[1] == "gha":
+    print(APP_ID)
 
 # this is where we set up the bot
 async def run():
     # set up twitch api instance and add user authentication with some scopes
     twitch = await Twitch(APP_ID, APP_SECRET)
     auth = UserAuthenticator(twitch, USER_SCOPE)
-    token, refresh_token = await auth.authenticate()
+    gha = False
+    if cli_args[1] == "gha":
+        print("Running in GitHub actions")
+        token = env('access_token')
+        refresh_token = env('refresh_token')
+        gha = True
+    else:
+        token, refresh_token = await auth.authenticate()
     await twitch.set_user_authentication(token, USER_SCOPE, refresh_token)
     user = await first(twitch.get_users(logins=TARGET_CHANNEL))
     print(user)
@@ -137,13 +146,19 @@ async def run():
     Global.GlobalBadges.append(await Twitch.get_global_chat_badges(twitch)) 
     Global.ChannelBadges.append(await Twitch.get_chat_badges(twitch,user.id))
 
-    # lets run till we press enter in the console
-    try:
-        input('press ENTER to stop \n')
-    finally:
+    if gha:
+        print("Running in GitHub actions, skipping input wait")
         # now we can close the chat bot and the twitch api client
         chat.stop()
         await twitch.close()
+    else:
+        # lets run till we press enter in the console
+        try:
+            input('press ENTER to stop \n')
+        finally:
+            # now we can close the chat bot and the twitch api client
+            chat.stop()
+            await twitch.close()
 
 
 
