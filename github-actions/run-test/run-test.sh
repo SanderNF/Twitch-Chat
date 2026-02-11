@@ -20,7 +20,7 @@ curl \
 
 waiting=true
 while $waiting; do
-    sleep 5
+    sleep 10
     RESPONSE=$(curl --location 'https://id.twitch.tv/oauth2/token' \
     --form "client_id=\"$ENV_Twitch_ID\"" \
     --form 'scopes="chat:read chat:edit"' \
