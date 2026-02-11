@@ -22,6 +22,7 @@ runs:
     - name: run test
       shell: bash
       run: |
+        echo "Twitch_ID=${{ inputs.Twitch_ID }}"
         chmod +x ./github-actions/run-test/run-test.sh
         cd ./github-actions/run-test/
         sh run-test.sh
