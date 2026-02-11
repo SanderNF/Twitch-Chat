@@ -37,9 +37,9 @@ pip install hapless
 .venv/bin/pip install -r requirements.txt
 
 (
-    echo client_id=$input1
-    echo client_secret=$input2
-    echo channel_name=$Input3
-    echo max_large_emotes=$Input4
-    echo discord_link=$Input5
+    echo client_id=$Twitch_ID
+    echo client_secret=$Twitch_Secret
+    echo channel_name=$Channel_Name
+    echo max_large_emotes=$Max_Large_Emotes
+    echo discord_link=$Discord_Link
 ) > .env
