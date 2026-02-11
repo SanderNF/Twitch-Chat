@@ -13,7 +13,6 @@ runs:
   using: composite
   steps:
     - name: Set environment variables
-      if: env.ADHOC_ALLOWED == 'true'
       shell: bash
       run: |
         export ENV_Twitch_ID="${{ inputs.Twitch_ID }}"
