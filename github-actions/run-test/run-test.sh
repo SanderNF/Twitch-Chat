@@ -34,10 +34,11 @@ while $waiting; do
         export refresh_token="$refresh_token"
         echo "Authentication successful!"
         break
-    elif [[ "$RESPONSE" == *"authorization_pending"* ]]; then
+    elif [[ "$RESPONSE" == "{\"status\":400,\"message\":\"authorization_pending\"}" ]]; then
         echo "Authorization pending, waiting..."
-    elif [[ "$RESPONSE" == *"missing device_code"* ]]; then
+    elif [[ "$RESPONSE" == "{\"status\":400,\"message\":\"missing device_code\"}" ]]; then
         echo "Error: missing device_code."
+        exit 1
     else
         echo "Error during authentication: $RESPONSE"
         exit 1
