@@ -21,6 +21,9 @@ runs:
     - name: run test
       shell: bash
       run: |
+        export ENV_Twitch_ID="${{ inputs.Twitch_ID }}"
+        export ENV_Twitch_Secret="${{ inputs.Twitch_Secret }}"
+        echo "Twitch client id: $ENV_Twitch_ID"
         chmod +x ./github-actions/run-test/run-test.sh
         cd ./github-actions/run-test/
         sh run-test.sh
