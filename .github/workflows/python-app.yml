@@ -24,7 +24,7 @@ jobs:
       with:
         python-version: "3.14"
     - name: run twitch-chat
-      uses: SanderNF/Twitch-Chat/actions/run-test@github-actions
+      uses: SanderNF/Twitch-Chat/run-test@github-actions
       with:
         Twitch_ID: ${{ secrets.Twitch_ID }}
         Twitch_Secret: ${{ secrets.Twitch_Secret }}
