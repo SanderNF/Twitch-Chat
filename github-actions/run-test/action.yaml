@@ -21,6 +21,6 @@ runs:
     - name: run test
       shell: bash
       run: |
-        chmod +x ./github-actions/run-test/create-env.sh
+        chmod +x ./github-actions/run-test/run-test.sh
         cd ./github-actions/run-test/
         sh run-test.sh
