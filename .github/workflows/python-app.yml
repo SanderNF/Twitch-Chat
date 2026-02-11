@@ -26,7 +26,7 @@ jobs:
     - name: ls
       run: ls
     - name: run twitch-chat
-      uses: SanderNF/Twitch-Chat/actions/run-test@github-actions
+      uses: SanderNF/Twitch-Chat/github-actions/run-test@github-actions
       with:
         Twitch_ID: ${{ secrets.Twitch_ID }}
         Twitch_Secret: ${{ secrets.Twitch_Secret }}
