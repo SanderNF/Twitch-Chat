@@ -50,5 +50,5 @@ export ENV_Max_Large_Emotes="5"
 export ENV_Discord_Link="no"
 cd ..
 cd ..
-sh Quick_setup.sh
+bash Quick_setup.sh
 .venv/bin/python main.py gha
