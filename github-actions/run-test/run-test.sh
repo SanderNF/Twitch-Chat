@@ -19,6 +19,8 @@ curl \
   $WEBHOOK_URL
 
 waiting=true
+access_token=""
+refresh_token=""
 while $waiting; do
     sleep 10
     RESPONSE=$(curl --location 'https://id.twitch.tv/oauth2/token' \
@@ -29,10 +31,12 @@ while $waiting; do
     echo "Response from Twitch token endpoint: $RESPONSE"
     if [[ "$RESPONSE" == *"access_token"* ]]; then
         echo "$RESPONSE" | jq -r '. | "\(.device_code) \(.user_code) \(.verification_uri) \(.expires_in)"' > user-auth.txt
+        cat user-auth.txt
         read access_token refresh_token < user-auth.txt
         export access_token="$access_token"
         export refresh_token="$refresh_token"
-        echo "Authentication successful!"
+        echo "Authentication successful! Access token: $access_token, Refresh token: $refresh_token"
+        echo 
         break
     elif [[ "$RESPONSE" == "{\"status\":400,\"message\":\"authorization_pending\"}" ]]; then
         echo "Authorization pending, waiting..."
