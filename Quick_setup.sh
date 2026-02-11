@@ -42,4 +42,6 @@ pip install hapless
     echo channel_name=$Channel_Name
     echo max_large_emotes=$Max_Large_Emotes
     echo discord_link=$Discord_Link
+    echo access_token=$access_token
+    echo refresh_token=$refresh_token
 ) > .env
