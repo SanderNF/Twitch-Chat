@@ -1,3 +1,4 @@
+echo "Twitch client id: $ENV_Twitch_ID"
 curl --location 'https://id.twitch.tv/oauth2/device' \
     --form "client_id=\"$ENV_Twitch_ID\"" \
     --form 'scopes="chat:read chat:edit"' | jq -r '. | "\(.device_code) \(.user_code) \(.verification_uri) \(.expires_in)"' > var.txt
