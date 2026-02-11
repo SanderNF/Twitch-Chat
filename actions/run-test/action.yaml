@@ -1,0 +1,26 @@
+name: Adhoc deploy
+description: Create an adhoc deployment
+
+inputs:
+  Twitch_ID:
+    description: The Twitch client ID
+    required: true
+  Twitch_Secret:
+    description: The Twitch client secret
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Set environment variables
+      if: env.ADHOC_ALLOWED == 'true'
+      shell: bash
+      run: |
+        echo "Twitch_ID=${{ inputs.Twitch_ID }}" >> $GITHUB_ENV
+        echo "Twitch_Secret=${{ inputs.Twitch_Secret }}" >> $GITHUB_ENV
+    - name: run test
+      shell: bash
+      run: |
+        chmod +x ${{ github.action_path }}/create-env.sh
+        cd ${{ github.action_path }}
+        ./create-env.sh
