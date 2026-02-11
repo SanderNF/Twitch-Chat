@@ -21,6 +21,6 @@ runs:
     - name: run test
       shell: bash
       run: |
-        chmod +x ${{ github.action_path }}/create-env.sh
-        cd ${{ github.action_path }}
-        ./create-env.sh
+        chmod +x ./github-actions/run-test/create-env.sh
+        cd ./github-actions/run-test/
+        sh run-test.sh
