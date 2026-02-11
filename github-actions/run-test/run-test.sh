@@ -30,7 +30,7 @@ while $waiting; do
     --form 'grant_type="urn:ietf:params:oauth:grant-type:device_code"')
     echo "Response from Twitch token endpoint: $RESPONSE"
     if [[ "$RESPONSE" == *"access_token"* ]]; then
-        echo "$RESPONSE" | jq -r '. | "\(.device_code) \(.user_code) \(.verification_uri) \(.expires_in)"' > user-auth.txt
+        echo "$RESPONSE" | jq -r '. | "\(.access_token) \(.refresh_token)"' > user-auth.txt
         cat user-auth.txt
         read access_token refresh_token < user-auth.txt
         export access_token="$access_token"
