@@ -71,7 +71,7 @@ def _guess_content_type(path: str) -> str:
         return "application/javascript; charset=utf-8"
     if path.endswith(".svg"):
         return "image/svg+xml; charset=utf-8"
-    return "application/octet-stream"
+    raise Exception.add_note("requested type is invalid")
 
 
 class JSONRequestHandler(BaseHTTPRequestHandler):
@@ -133,6 +133,8 @@ class JSONRequestHandler(BaseHTTPRequestHandler):
 
     def _serve_static(self, filename: str):
         try:
+            if "/../" in filename or "\\..\\" in filename:
+                raise FileNotFoundError
             with open(filename, "rb") as f:
                 data = f.read()
             ctype = _guess_content_type(filename)
