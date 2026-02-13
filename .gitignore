@@ -412,6 +412,7 @@ pyvenv.cfg
 /Scripts
 test.html
 test.py
+CHATBOX_CONFIG
 actions/run-test/var.txt
 actions/run-test/user-auth.txt
 github-actions/run-test/var.txt
