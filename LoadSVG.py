@@ -1,4 +1,5 @@
 def load_svg(file_path, primary_color="#ff8ae8", secondary_color="#6edbff", background_color="#222"):
+    print(f"colors are: {primary_color} | {secondary_color} | {background_color}")
     with open(file_path, 'r') as file:
         svg_content = file.read()
     # Replace colors in SVG content

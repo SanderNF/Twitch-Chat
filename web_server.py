@@ -21,10 +21,16 @@ CACHE_LOCK = threading.Lock()
 CACHED_TEXT = b'{}'  # bytes
 LAST_ERROR = None
 
+config = {"svg_primary_color": "#ff8ae8", "svg_secondary_color":"#6edbff","svg_background_color":"#222"}
+try:
+    with open('CHATBOX_CONFIG', 'r',  encoding='utf-8') as f:
+        config = json.load(f)
+except Exception as e:
+    print(f'JSON save failed with error: {e} reseting chat')
+    with open('CHATBOX_CONFIG', 'w', encoding='utf-8') as f:
+        json.dump({"svg_primary_color": "#ff8ae8", "svg_secondary_color":"#6edbff","svg_background_color":"#222"}, f, ensure_ascii=False, indent=4)
 
-
-
-
+print(f"config: {config}")
 
 try:
     with open('log.json', 'r',  encoding='utf-8') as f:
@@ -156,7 +162,7 @@ class JSONRequestHandler(BaseHTTPRequestHandler):
 
     def _serve_svg(self, filename):
         try:
-            data = load_svg(filename, background_color="#fff").encode("utf-8")
+            data = load_svg(filename, config["svg_primary_color"], config["svg_secondary_color"], config["svg_background_color"]).encode("utf-8")
             print(f"Loaded SVG content: {data[:500]}...")  # Print the first 100 characters for debugging
             ctype = "image/svg+xml; charset=utf-8"
             self.send_response(200)
