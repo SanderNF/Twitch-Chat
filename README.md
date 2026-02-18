@@ -1,4 +1,4 @@
-[![Python application](https://github.com/SanderNF/Twitch-Chat/actions/workflows/python-app.yml/badge.svg?event=push)](https://github.com/SanderNF/Twitch-Chat/actions/workflows/python-app.yml)
+[![Python application](https://github.com/SanderNF/Twitch-Chat/actions/workflows/python-app.yml/badge.svg)](https://github.com/SanderNF/Twitch-Chat/actions/workflows/python-app.yml)
 # Twitch-Chat
 A simple application that reads twitch chat and displays it in a browser with aditional CSS styling
 
