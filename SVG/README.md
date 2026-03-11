@@ -1,20 +1,5 @@
 # Curent SVG's 
-<style>
-div.svg {
-  width: 128px;
-  height: 196px;
-}
-div.svg h3 {
-  font-size: 16px;
-  text-align: center;
-  margin: 0;
-  height: 64px;
-}
-img {
-  width: 128px;
-  height: 128px;
-}
-</style>
+
 <div style="display: flex;width: 100%;flex-wrap: wrap;gap: 16px;">
 <div style="width: 128px;height: 196px;">
 <h3 class="font-size: 16px;text-align: center;margin: 0;height: 64px;">Application</h3>
