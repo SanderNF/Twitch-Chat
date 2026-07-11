@@ -72,6 +72,16 @@ img {
     margin-bottom: 8px;
     filter: drop-shadow(0.1rem 0.2rem 0.3rem black);
 }
+.chat-pfp {
+    vertical-align: middle;
+    width: 70px;
+    height: 70px;
+    margin: -10px;
+    margin-left: 2px;
+    transform: translate(2px, -5px);
+    border-radius: 30px;
+    filter: drop-shadow(0.1rem 0.2rem 0.3rem black);
+}
 /*
 .message {
     margin-bottom: -100px;

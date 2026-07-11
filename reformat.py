@@ -5,6 +5,8 @@ from keywordDetection import icon
 from check_version import runVersionCheck
 from gitUpdate import runUpdate
 
+from twitchAPI.helper import first
+
 load_dotenv()
 
 class test:
@@ -15,6 +17,9 @@ class test:
     user = {'user_badge_info': None, 'user_badges': {'broadcaster': '1', 'glhf-pledge': '1'}, 'user_chat': '<twitchAPI.chat.Chat object at 0x00000244FE60B8C0>', 'user_color': '#2E8B57', 'user_display_name': 'sandernf__', 'user_mod': False, 'user_vip': False, 'user_turbo': False, 'user_subscriber': False, 'user_user_type': None, 'user_name': 'sandernf__'}
 
 
+
+class Global:
+    TwitchInstance = None
     
 
 with open('Chat.json', 'w',  encoding='utf-8') as f:
@@ -76,13 +81,22 @@ def hasBadge(badgesList, badgeName: str):
         return False
 
 
-async def reformatMsg(msg, GlobalBadges, ChannelBadges) -> None:
+async def getUserPfp(id):
+    twitch = Global.TwitchInstance
+    user = await first(twitch.get_users(user_ids=[id]))
+    ##print(user)
+    ##print(await first(user))
+    return f'<img alt="pfp" aria-label="pfp" class="chat-pfp" src="{user.profile_image_url}">'
+
+
+async def reformatMsg(msg, GlobalBadges, ChannelBadges, twitch) -> None:
     """Reformats the chat message and displays it in the overlay
 
         :param msg: the chat message to reformat
         :param GlobalBadges: dict containing the global twitch chat badges
         :param CannelBadges: dict containing the channel specific twitch chat badges"""
     print(msg.text)
+    Global.TwitchInstance = twitch
     msgIcon = icon(msg)
     #print(GlobalBadges)
     try:
@@ -177,7 +191,7 @@ async def reformatMsg(msg, GlobalBadges, ChannelBadges) -> None:
             '<div class="chatMsg">',
             f'<code style="color:{msg.user['user_color']};">',
             f'{formatBadges(Badges)}',
-            f'{msg.user['user_display_name']}</code>',
+            f'{msg.user['user_display_name']}{await getUserPfp(msg.user['user_id'])}</code>',
             '<div class="msgContent">',
             '<p>'
            ]
