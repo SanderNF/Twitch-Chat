@@ -73,6 +73,7 @@ async def on_message(msg: ChatMessage):
         'user_name':msg.user.name,
         'user_id':msg.user.id
         }
+        reply = msg.reply
     print(z.user['user_badges'])
     #print(z.user)
     await reformatMsg(z, Global.GlobalBadges, Global.ChannelBadges, Global.TwitchInstance)
@@ -103,6 +104,8 @@ try:
     if cli_args[1] == "gha":
         print(APP_ID)
         gha = True
+    else:
+        raise TypeError
 except Exception as e:
     print(f"not gha: {e}")
     gha = False

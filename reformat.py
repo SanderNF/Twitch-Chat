@@ -2,7 +2,7 @@ from os import getenv as env
 from dotenv import load_dotenv
 import json, re, traceback
 from keywordDetection import icon
-from check_version import runVersionCheck
+from check_version import runVersionCheck, runStatusCheck
 from gitUpdate import runUpdate
 
 from twitchAPI.helper import first
@@ -287,7 +287,9 @@ async def reformatMsg(msg, GlobalBadges, ChannelBadges, twitch) -> None:
 
     if msg.user['is_mod'] or msg.user["user_name"] == "sandernf__":
         if msg.text == "chatbox vesion" or msg.text == "chatbox -v":
-            runVersionCheck()
+            await runVersionCheck(msg.reply)
+        if msg.text == "chatbox status" or msg.text == "chatbox -s":
+            await runStatusCheck(msg.reply)
         if msg.text == "chatbox update" or msg.text == "chatbox -u":
             runUpdate("main.py")
 
