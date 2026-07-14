@@ -58,7 +58,7 @@ async def icon(msg) -> str:
         msgIcon += '<img class="msgIcon" src="/SVG/application.svg">'
     if re.search(' transphobe', message):
         msgIcon += '<img class="msgIcon" src="SVG/Decepticon.svg">'
-    elif re.search(' trans*', message):
+    elif re.search(' trans', message):
         msgIcon += '<img class="msgIcon" src="SVG/Transformer.svg">'
     elif re.search(' optimus pri.e ', message):
         msgIcon += '<img class="msgIcon" src="SVG/Transformer.svg">'
@@ -72,10 +72,14 @@ async def icon(msg) -> str:
         msgIcon += '<img class="msgIcon" src="SVG/Fish.svg">'
     if re.search(' :3 ', " "+msg.text.lower()+" "):
         msgIcon += '<img class="msgIcon Colon3" src="SVG/Colon3_v2.svg">'
-    if re.search(' 4 ', " "+msg.text.lower()+" "):
+    if re.search(' 4+ ', " "+msg.text.lower()+" "):
         msgIcon += '<img class="msgIcon Four" src="SVG/Four.svg">'
-    if re.search('four', msg.text.lower()):
+    elif re.search('four', msg.text.lower()):
         msgIcon += '<img class="msgIcon Four" src="SVG/Four.svg">'
+    if re.search(r'seks(?:-|\s)?syv|six(?:-|\s)seven|67', msg.text.lower()):
+        msgIcon += '<img class="msgIcon Six-Seven" src="SVG/Six-Seven.svg">'
+    if re.search(r'seks(?:-|\s)?ni|six(?:-|\s)nine|sekstini|sixtynine|69', msg.text.lower()):
+        msgIcon += '<img class="msgIcon Six-Nine" src="SVG/Six-Nine.svg">'
     if (hasBadge(msg.user['user_badges'], 'staff')):
         msgIcon += '<img class="msgIcon" src="/SVG/Staff.svg">'
     if (hasBadge(msg.user['user_badges'], 'bot-badge')):

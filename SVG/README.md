@@ -58,6 +58,14 @@
 <img style="width: 128px;height: 128px;" width="128" height="128" alt="Four" src="Four.svg" />
 </div>
 <div style="width: 128px;height: 196px;">
+<h3 style="font-size: 16px;text-align: center;margin: 0;height: 64px;">Funny Number</h3>
+<img style="width: 128px;height: 128px;" width="128" height="128" alt="SixtyNine" src="Six-Nine.svg" />
+</div>
+<div style="width: 128px;height: 196px;">
+<h3 style="font-size: 16px;text-align: center;margin: 0;height: 64px;">Unfunny Number</h3>
+<img style="width: 128px;height: 128px;" width="128" height="128" alt="Six Seven" src="Six-Seven.svg" />
+</div>
+<div style="width: 128px;height: 196px;">
 <h3 style="font-size: 16px;text-align: center;margin: 0;height: 64px;">Head mod</h3>
 <img style="width: 128px;height: 128px;" width="128" height="128" alt="Head mod" src="Head_mod.svg" />
 </div>
