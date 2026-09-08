@@ -10,7 +10,7 @@ load_dotenv()
 def hasBadge(badgesList, badgeName: str):
     """Checks if a given badge is in the list of badges
 
-        :param badgesList: the list of badfes
+        :param badgesList: the list of badges
         :param badgeName: the name of the badge to look for"""
     try:
         badge = badgesList[badgeName]
@@ -23,10 +23,10 @@ def hasBadge(badgesList, badgeName: str):
         return False
     
 
-def stripToLeters(string: str):
-    """removes all non norwegian leters from the string
+def stripToLetters(string: str):
+    """removes all non norwegian letters from the string
     
-    :param string: the sring to srtrip leters from"""
+    :param string: the sring to strip letters from"""
     abc = "abcdefghijklmnopqrstuvwxyzæøå"
     text = []
     for i in string.lower():
@@ -43,7 +43,7 @@ async def icon(msg) -> str:
 
         :param msg: the message to get icons for"""
     msgIcon = ""
-    message = (" "+stripToLeters(msg.text)+" ")
+    message = (" "+stripToLetters(msg.text)+" ")
     #print(msg.text[-1:])
     #print("https://discord.gg/fwxZNJy" in msg.text)
     if re.search(f'{env('discord_link')}', msg.text):

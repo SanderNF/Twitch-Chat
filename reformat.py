@@ -68,7 +68,7 @@ def formatBadges(data):
 def hasBadge(badgesList, badgeName: str):
     """Checks if a given badge is in the list of badges
 
-        :param badgesList: the list of badfes
+        :param badgesList: the list of badges
         :param badgeName: the name of the badge to look for"""
     try:
         badge = badgesList[badgeName]
